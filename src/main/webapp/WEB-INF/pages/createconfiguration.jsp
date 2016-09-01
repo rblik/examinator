@@ -277,7 +277,7 @@
 	<hr>
 	
 	<input type="button" value="Save" onclick="save()"/>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
 		function showSelectedBlock(select) {
 			var selectId = select.id;
@@ -353,7 +353,24 @@
 				}
 			}
 			allSettings["operations"] = operationsSettings;
-			alert(JSON.stringify(allSettings));
+			$.ajax({
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				type: "POST",
+				url:  "http://localhost:8080/add",
+				data: "configuration="+JSON.stringify(allSettings),
+				//Output php feedback
+				success: function(html)
+				{
+					//Clear input box
+					alert("done");
+				}
+			});
+
+			//alert(JSON.stringify(allSettings));
+			document.write(JSON.stringify(allSettings));
 		}
 	</script>
 </html>
