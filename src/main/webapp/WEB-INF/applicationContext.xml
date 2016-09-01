@@ -10,5 +10,7 @@
     <context:component-scan base-package="com.db.schooolexaminator.services"/>
     <context:component-scan base-package="com.db.schooolexaminator.config"/>
 
+    <context:component-scan base-package="com.db.schooolexaminator.server"/>
+
 
 </beans>

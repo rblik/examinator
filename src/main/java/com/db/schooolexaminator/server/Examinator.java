@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.server;
 
+import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.server.exercise.Exercise;
 
 /**
@@ -20,4 +21,6 @@ public interface Examinator {
     void setPupilName(String name);
 
     String getImage();
+
+    void setConfiguration(Configuration c);
 }

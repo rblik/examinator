@@ -36,6 +36,7 @@ public class ExaminatorImpl implements Examinator {
     private int correctAnswers = 0;
 
 
+    public ExaminatorImpl() {}
 
     public void init() {
         generators = new ArrayList<ExerciseGenerator>();

@@ -17,14 +17,13 @@ import java.util.function.Function;
 public class ExaminatorManagerImpl implements ExaminatorManager {
 
 
-    Map<Integer, Examinator> examinators;
-
     @Autowired
     ConfigurationDAO configurationDAO;
 
     @Autowired
     private Function<Configuration, Examinator> supplier;
 
+    Map<Integer, Examinator> examinators;
 
 
     @PostConstruct

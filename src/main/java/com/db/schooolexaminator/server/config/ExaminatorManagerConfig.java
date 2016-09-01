@@ -1,7 +1,8 @@
 package com.db.schooolexaminator.server.config;
 
 import com.db.schooolexaminator.model.Configuration;
-import com.db.schooolexaminator.server.Examinator2;
+import com.db.schooolexaminator.server.Examinator;
+import com.db.schooolexaminator.server.ExaminatorImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
@@ -14,9 +15,9 @@ public class ExaminatorManagerConfig {
 
 
     @Bean
-    public Function<Configuration, Examinator2> examinatorSupplier(){
+    public Function<Configuration, Examinator> examinatorSupplier(){
         return c -> {
-            Examinator2 e = examinator();
+            Examinator e = examinator();
             e.setConfiguration(c);
             return e;
         };
@@ -34,8 +35,8 @@ public class ExaminatorManagerConfig {
 
     @Bean
     @Scope("prototype")
-    public Examinator2 examinator() {
-        return new Examinator2();
+    public Examinator examinator() {
+        return new ExaminatorImpl();
     }
 
 
