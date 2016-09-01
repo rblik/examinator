@@ -1,10 +1,15 @@
 package com.db.schooolexaminator.model;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
  */
+
+
+@Data
 public class Constraint {
     private String sign;
     private int minA;
@@ -17,4 +22,7 @@ public class Constraint {
     private List<Integer> special;
     private boolean allowedNegativeAnswer;
     private boolean divisionWithoutRemainder;
+
+
+
 }
