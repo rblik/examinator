@@ -1,10 +1,7 @@
 package com.db.schooolexaminator.model;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @lombok.Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Configuration {
 
@@ -27,11 +24,14 @@ public class Configuration {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Email> emails;
 
+    @Getter
     @OneToMany(cascade = CascadeType.ALL)
     @JsonUnwrapped
     private List<Constraint> constraints;
 
+    @Getter
     private int frameCols;
+    @Getter
     private int frameRows;
 
     public Configuration(String title, List<Email> emails, List<Constraint> constraints, int frameCols, int frameRows) {

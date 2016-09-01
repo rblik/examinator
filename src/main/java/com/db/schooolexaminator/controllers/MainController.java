@@ -1,7 +1,6 @@
 package com.db.schooolexaminator.controllers;
 
 import com.db.schooolexaminator.model.Configuration;
-import com.db.schooolexaminator.model.Person;
 import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.TeacherService;
 import com.fasterxml.jackson.databind.ObjectMapper;

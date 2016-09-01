@@ -14,8 +14,8 @@ import java.util.Arrays;
 @Repository
 public class ConfigurationDAO {
     public Configuration getConfigurationbyId(int configurationId) {
-        Constraint c1 = new Constraint("+", 0, 100, 0, 100, 0, 1000, null, null, false, false);
-        Constraint c2 = new Constraint("*", 5, 20, 5, 20, 0, 10000000, null, null, false, false);
-        return new Configuration("privet", null, 3, 3, Arrays.asList(c1, c2));
+        Constraint c1 = new Constraint("+", 0, 100, 0, 100, 0, 1000, null, null, false, false, 123);
+        Constraint c2 = new Constraint("*", 5, 20, 5, 20, 0, 10000000, null, null, false, false, 178);
+        return new Configuration("privet", null,Arrays.asList(c1, c2), 3, 3);
     }
 }

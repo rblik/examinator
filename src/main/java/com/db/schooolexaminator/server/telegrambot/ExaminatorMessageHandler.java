@@ -58,6 +58,10 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
         //TODO: remove this
         //manager = new ExaminatorManagerImpl();
 
+        if (!message.hasText()) {
+            sendTextMessage("I'm too stupid to understand anything except text, sorry", message.getChatId());
+            return;
+        }
         String messageText = message.getText();
         Integer userId = message.getFrom().getId();
         Long chatId = message.getChatId();
@@ -117,17 +121,18 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
         sendTextMessage(nameSavedMsg + " \n" + letsStartExamMsg, chatId, messageId);
 
         //start exam, give first exercise
-        sendNewExerciseOrFinishExam(chatId, manager.getExaminator(userId));
+        sendNewExerciseOrFinishExam(chatId, userId);
     }
 
-    void sendNewExerciseOrFinishExam(Long chatId, Examinator examinator){
-        Exercise newExercise = examinator.generateNextExercise();
+    void sendNewExerciseOrFinishExam(Long chatId, Integer userId){
+        Exercise newExercise = manager.getExaminator(userId).generateNextExercise();
         if(newExercise != null) {
             sendTextMessage(newExercise.toStringWithoutResult(), chatId, null, true);
         }
         else {
             sendTextMessage("Well done! Exam is finished! To start another exam, send me exam key. You can ask your parents for it.", chatId);
             sendSticker(StickerTypes.FINISHED_EXAM, chatId);
+            manager.removeExaminator(userId);
         }
     }
 
@@ -139,7 +144,7 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
             sendSticker(StickerTypes.SKIPPED_QUESTION, chatId);
             sendTextMessage("Correct answer was: " + correctAnswer, chatId, messageId);
             //sendImageInResponseTo(manager.getExaminator(userId).getImage(), messageId, chatId);
-            sendNewExerciseOrFinishExam(chatId, manager.getExaminator(userId));
+            sendNewExerciseOrFinishExam(chatId, userId);
             return;
         }
         //we expect that we already gave an expression to pupil and now receive and answer
@@ -151,14 +156,15 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
             if(!manager.getExaminator(userId).answerIsCorrect(receivedAnswer)) {
                 //incorrect answer
                 answerToSend = "Wrong, try again. Try again";
+                String exercise = manager.getExaminator(userId).getCurrentExercise().toStringWithoutResult();
                 sendSticker(StickerTypes.WRONG_ANSWER, chatId);
-                sendTextMessage(answerToSend, chatId, messageId, true);
+                sendTextMessage(answerToSend + "\n" + exercise, chatId, messageId, true);
             }
             else {
                 //correct code, ask for name
                 sendSticker(StickerTypes.CORRECT_ANSWER, chatId);
                 sendImageInResponseTo(manager.getExaminator(userId).getImage(), messageId, chatId);
-                sendNewExerciseOrFinishExam(chatId, manager.getExaminator(userId));
+                sendNewExerciseOrFinishExam(chatId, userId);
             }
         }
         catch (NumberFormatException e) {

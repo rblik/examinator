@@ -51,4 +51,9 @@ public class ExaminatorManagerImpl implements ExaminatorManager {
     public Examinator getExaminator(int pupilId) {
         return examinators.get(pupilId);
     }
+
+
+    public void removeExaminator(int pupilId) {
+        examinators.remove(pupilId);
+    }
 }

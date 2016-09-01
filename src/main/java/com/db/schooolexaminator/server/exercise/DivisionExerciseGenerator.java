@@ -22,8 +22,8 @@ public class DivisionExerciseGenerator implements ExerciseGenerator {
 
 
     public DivisionExerciseGenerator(Constraint constraint) {
-        constraintA = new NumberConstraint(constraint.getMinA(), constraint.getMaxA(), constraint.getExcept(), constraint.getSpecial());
-        constraintB = new NumberConstraint(constraint.getMinB(), constraint.getMaxB(), constraint.getExcept(), constraint.getSpecial());
+        constraintA = new NumberConstraint(constraint.getMinA(), constraint.getMaxA(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
+        constraintB = new NumberConstraint(constraint.getMinB(), constraint.getMaxB(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
         constraintAns = new NumberConstraint(constraint.getMinAnswer(), constraint.getMaxAnswer());
         isDivisionWithoutRemainder = constraint.isDivisionWithoutRemainder();
     }

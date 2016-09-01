@@ -2,6 +2,7 @@ package com.db.schooolexaminator.server.telegrambot;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -18,10 +19,12 @@ public enum StickerTypes {
         this.names = names;
     }
 
+    private Random r = new Random();
+
     @Override
     public String toString()
     {
-        return  names.get((int)Math.random()%names.size());
+        return  names.get(r.nextInt(names.size()));
     }
 
 }

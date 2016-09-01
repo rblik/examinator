@@ -8,5 +8,6 @@ public interface ExaminatorManager {
     boolean hasExaminator(int pupilId);
     boolean createExaminator(int pupilId, int configurationId);
     Examinator getExaminator(int pupilId);
+    void removeExaminator(int pupilId);
 
 }

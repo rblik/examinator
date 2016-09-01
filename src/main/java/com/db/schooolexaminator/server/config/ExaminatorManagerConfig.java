@@ -20,7 +20,6 @@ public class ExaminatorManagerConfig {
         return c -> {
             Examinator e = examinator();
             e.setConfiguration(c);
-            e.init();
             return e;
         };
     }

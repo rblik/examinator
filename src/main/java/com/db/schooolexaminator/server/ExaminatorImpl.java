@@ -7,7 +7,6 @@ import com.db.schooolexaminator.server.picture.PictureManager;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,7 +21,7 @@ public class ExaminatorImpl implements Examinator {
     @Setter @Getter
     private String pupilName;
 
-    @Setter @Getter
+    @Getter
     private Configuration configuration;
 
     private PictureManager pictureManager;
@@ -32,14 +31,16 @@ public class ExaminatorImpl implements Examinator {
 
     Exercise currentExercise;
 
-    private int incorrectAnswer = 0;
-    private int skipQuestions = 0;
-    private int correctAnswers = 0;
+    private int countIncorrectAnswer = 0;
+    private int countSkipQuestions = 0;
+    private int countCorrectAnswers = 0;
+
+    private int countNumberExercise;
 
 
     public ExaminatorImpl() {}
 
-    public void init() {
+    private void init() {
         generators = new ArrayList<ExerciseGenerator>();
         for (Constraint c : configuration.getConstraints()) {
             if (c.getSign().equals("+")) {
@@ -55,15 +56,20 @@ public class ExaminatorImpl implements Examinator {
                 generators.add(new DivisionExerciseGenerator(c));
             }
         }
+        pictureManager = new PictureManager("C:\\Users\\JavaSchoolStudent\\Desktop\\SchoolExaminator\\src\\main\\resources\\pictures\\picture.jpg" ,configuration.getFrameRows(), configuration.getFrameCols());
+        countNumberExercise = configuration.getFrameCols() * configuration.getFrameRows();
+    }
 
-        pictureManager = new PictureManager("C:\\Users\\JavaSchoolStudent\\Desktop\\SchoolExaminator\\src\\main\\resources\\pictures\\picture.jpg" ,configuration.getRows(), configuration.getColumns());
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+        init();
     }
 
 
     @Override
     public boolean answerIsCorrect(int answer) {
         if (answer == currentExercise.getAnswer()) {
-            correctAnswers++;
+            countCorrectAnswers++;
             pictureManager.openPiece();
             currentExercise = null;
             return true;
@@ -76,7 +82,7 @@ public class ExaminatorImpl implements Examinator {
     public int skipCurrent() {
         int ans = currentExercise.getAnswer();
         currentExercise = null;
-        skipQuestions++;
+        countSkipQuestions++;
         return ans;
     }
 
@@ -93,10 +99,17 @@ public class ExaminatorImpl implements Examinator {
     @Override
     public Exercise generateNextExercise() {
         Random r = new Random();
-        ExerciseGenerator exerciseGenerator = generators.get(r.nextInt(generators.size()));
-        Exercise exercise = exerciseGenerator.generate();
-        currentExercise = exercise;
-        return exercise;
+        if (countCorrectAnswers == countNumberExercise) {
+            //TODO send emails
+            return null;
+        } else {
+            ExerciseGenerator exerciseGenerator = generators.get(r.nextInt(generators.size()));
+            Exercise exercise = exerciseGenerator.generate();
+            currentExercise = exercise;
+            return exercise;
+        }
+
+
     }
 
     @Override
