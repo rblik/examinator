@@ -9,6 +9,8 @@ import com.db.schooolexaminator.server.exercise.Exercise;
 public interface Examinator {
 
     boolean answerIsCorrect(int answer);
+    void init();
+
     int skipCurrent();
 
     Exercise getCurrentExercise();

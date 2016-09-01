@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -10,9 +11,10 @@ import java.util.List;
 
 
 @Data
+@AllArgsConstructor
 public class Constraint {
     private String sign;
-    private int minA;
+    private Integer minA;
     private int maxA;
     private int minB;
     private int maxB;

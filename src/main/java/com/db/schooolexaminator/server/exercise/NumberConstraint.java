@@ -47,10 +47,10 @@ public class NumberConstraint {
     public Integer generateNumber() {
         Random r = new Random();
         int countOperation = 0;
-        if (special.size() == 0) { //range
+        if ((special== null) || (special.size() == 0)) { //range
             while (countOperation < 1000) {
                 Integer value = this.getMinValue() + r.nextInt(this.getMaxValue() - this.getMinValue());
-                if (this.except.contains(value)) {
+                if ((except != null) && (except.contains(value))) {
                     countOperation++;
                     continue;
                 } else {

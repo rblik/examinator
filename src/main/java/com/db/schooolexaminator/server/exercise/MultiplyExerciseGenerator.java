@@ -49,6 +49,8 @@ public class MultiplyExerciseGenerator implements ExerciseGenerator {
         int b = constraintB.generateNumber();
         exercise.setB(b);
 
+        exercise.setAnswer(a * b);
+
         return exercise;
     }
 }

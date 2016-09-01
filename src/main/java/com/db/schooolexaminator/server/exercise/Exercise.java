@@ -13,6 +13,11 @@ public class Exercise {
     private int answer;
 
 
+
+    public String toStringWithoutResult() {
+        return a + " " + operation + " " + b;
+    }
+
     @Override
     public String toString() {
         return a + " " + operation + " " + b + " = " + answer;

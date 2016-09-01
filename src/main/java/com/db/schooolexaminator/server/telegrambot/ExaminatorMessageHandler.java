@@ -1,7 +1,14 @@
-package telegrambot;
+package com.db.schooolexaminator.server.telegrambot;
 
+import com.db.schooolexaminator.server.Examinator;
+import com.db.schooolexaminator.server.ExaminatorManager;
+import com.db.schooolexaminator.server.ExaminatorManagerImpl;
+import com.db.schooolexaminator.server.exercise.Exercise;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.methods.send.SendSticker;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Sticker;
@@ -12,13 +19,16 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButto
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
  */
-public class ExaminatorMessageHandler extends TelegramLongPollingBot implements MessageProcessor{
+
+@Component
+public class ExaminatorMessageHandler extends TelegramLongPollingBot implements MessageProcessor {
 
     public void onUpdateReceived(Update update) {
         final Message message = update.getMessage();
@@ -29,30 +39,6 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
                 processMessage(message);
             }
         }.start();
-
-        if(1+1==2) return;
-        if(message != null && message.getSticker() != null)
-        {
-            SendMessage msg = new SendMessage();
-            msg.setChatId(message.getChatId().toString());
-            msg.setText(message.getSticker().getFileId());
-
-            try {
-                sendMessage(msg);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-
-            SendSticker sticker = new SendSticker();
-            sticker.setChatId(message.getChatId().toString());
-            Sticker newSticker = new Sticker();
-            sticker.setSticker(message.getSticker().getFileId());
-            try {
-                sendSticker(sticker);
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public String getBotUsername() {
@@ -61,6 +47,8 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
     public String getBotToken() {
         return "220527772:AAGPz-VMhMiejjcd6YvEPHwVIpfZZsRHS9E";
     }
+
+    @Autowired
     private ExaminatorManager manager;
     private final String skipButtonName = "I don't know, skip this";
 
@@ -68,59 +56,7 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
     public void processMessage(Message message) {
 
         //TODO: remove this
-        manager = new ExaminatorManager() {
-            public boolean hasExaminator(int pupilId) {
-                return true;
-            }
-
-            public boolean createExaminator(int pupilId, int configurationId) {
-                return true;
-            }
-
-            public Examinator getExaminator(int pupilId) {
-                return new Examinator() {
-                    public boolean answerIsCorrect(int answer) {
-                        return false;
-                    }
-
-                    public int skipCurrent() {
-                        return 1;
-                    }
-
-                    public Exercise getCurrentExercise() {
-                        return new Exercise();
-                    }
-
-                    public boolean hasCurrentExercise() {
-                        return true;
-                    }
-
-                    public Exercise generateNextExercise() {
-                        return new Exercise();
-                    }
-
-                    public boolean hasPupilName() {
-                        return true;
-                    }
-
-                    public Exercise getExercise() {
-                        return new Exercise();
-                    }
-
-                    public String getPupilName() {
-                        return null;
-                    }
-
-                    public void setPupilName(String name) {
-                        //do nothing
-                    }
-
-                    public String getImage() {
-                        return "image.jpg";
-                    }
-                };
-            }
-        };
+        //manager = new ExaminatorManagerImpl();
 
         String messageText = message.getText();
         Integer userId = message.getFrom().getId();
@@ -187,7 +123,7 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
     void sendNewExerciseOrFinishExam(Long chatId, Examinator examinator){
         Exercise newExercise = examinator.generateNextExercise();
         if(newExercise != null) {
-            sendTextMessage(newExercise.toString(), chatId, null, true);
+            sendTextMessage(newExercise.toStringWithoutResult(), chatId, null, true);
         }
         else {
             sendTextMessage("Well done! Exam is finished! To start another exam, send me exam key. You can ask your parents for it.", chatId);
@@ -260,16 +196,16 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
     private  void sendImageInResponseTo(String imageName, Integer messageId, Long chatId)
     {
         //send photo
-//        SendPhoto sendPhotoRequest = new SendPhoto();
-//        File file = new File("image.jpg");
-//        sendPhotoRequest.setNewPhoto(file);
-//        sendPhotoRequest.setReplyToMessageId(messageId);
-//        sendPhotoRequest.setChatId(chatId.toString());
-//        try {
-//            sendPhoto(sendPhotoRequest);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
+        SendPhoto sendPhotoRequest = new SendPhoto();
+        File file = new File(imageName);
+        sendPhotoRequest.setNewPhoto(file);
+        sendPhotoRequest.setReplyToMessageId(messageId);
+        sendPhotoRequest.setChatId(chatId.toString());
+        try {
+            sendPhoto(sendPhotoRequest);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     private ReplyKeyboardMarkup replyKeyboardMarkup()

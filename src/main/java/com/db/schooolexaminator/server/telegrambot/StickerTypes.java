@@ -1,4 +1,4 @@
-package telegrambot;
+package com.db.schooolexaminator.server.telegrambot;
 
 import java.util.Arrays;
 import java.util.List;

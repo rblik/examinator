@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  */
 
 @Data
+@AllArgsConstructor
 public class Configuration {
     private String title;
     private List<String> emails;

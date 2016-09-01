@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -64,6 +65,7 @@ public class ExaminatorImpl implements Examinator {
         if (answer == currentExercise.getAnswer()) {
             correctAnswers++;
             pictureManager.openPiece();
+            currentExercise = null;
             return true;
         } else {
             return false;
@@ -90,13 +92,16 @@ public class ExaminatorImpl implements Examinator {
 
     @Override
     public Exercise generateNextExercise() {
-        ExerciseGenerator exerciseGenerator = generators.get(generators.size());
+        Random r = new Random();
+        ExerciseGenerator exerciseGenerator = generators.get(r.nextInt(generators.size()));
         Exercise exercise = exerciseGenerator.generate();
+        currentExercise = exercise;
         return exercise;
     }
 
     @Override
     public boolean hasPupilName() {
+        System.out.println(pupilName);
         return pupilName != null;
     }
 

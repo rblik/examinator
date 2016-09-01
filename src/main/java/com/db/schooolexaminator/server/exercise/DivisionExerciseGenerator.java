@@ -50,6 +50,10 @@ public class DivisionExerciseGenerator implements ExerciseGenerator {
 
         exercise.setB(b);
 
+        exercise.setAnswer(a / b);
+
+
+
         return exercise;
     }
 }

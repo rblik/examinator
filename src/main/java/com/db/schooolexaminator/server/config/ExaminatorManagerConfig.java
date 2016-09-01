@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.server.config;
 
+import com.db.schooolexaminator.dao.ConfigurationDAO;
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.server.Examinator;
 import com.db.schooolexaminator.server.ExaminatorImpl;
@@ -19,19 +20,16 @@ public class ExaminatorManagerConfig {
         return c -> {
             Examinator e = examinator();
             e.setConfiguration(c);
+            e.init();
             return e;
         };
     }
 
 
-/*
-
     @Bean
-    @Scope("prototype")
-    public Configuration configuration() {
-        return new Configuration();
+    public ConfigurationDAO configurationDAO() {
+        return new ConfigurationDAO();
     }
-*/
 
     @Bean
     @Scope("prototype")
