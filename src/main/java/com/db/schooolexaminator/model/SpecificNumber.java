@@ -22,4 +22,7 @@ public class SpecificNumber {
     public SpecificNumber(int value) {
         this.value = value;
     }
+    public SpecificNumber(String value) {
+        this.value =  Integer.valueOf(value);
+    }
 }

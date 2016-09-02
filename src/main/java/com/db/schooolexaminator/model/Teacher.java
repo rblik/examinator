@@ -20,7 +20,7 @@ public class Teacher {
     String userName;
     String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Configuration> configurations;
 
     public Teacher(String username, String password, List<Configuration> configurations) {

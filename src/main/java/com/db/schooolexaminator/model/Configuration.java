@@ -21,12 +21,12 @@ public class Configuration {
 
     private String title;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Email> emails;
 
     @Getter
-    @OneToMany(cascade = CascadeType.ALL)
     @JsonUnwrapped
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Constraint> constraints;
 
     @Getter

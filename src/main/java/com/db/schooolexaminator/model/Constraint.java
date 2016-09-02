@@ -2,6 +2,7 @@ package com.db.schooolexaminator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Constraint {
     private String sign;
     private int minA;
@@ -21,16 +23,12 @@ public class Constraint {
     private int maxB;
     private int minAnswer;
     private int maxAnswer;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<SpecificNumber> except;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<SpecificNumber> special;
     private boolean allowedNegativeAnswer;
     private boolean divisionWithoutRemainder;
-
-    public Constraint() {
-
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
