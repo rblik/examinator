@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
 <p>
-    List of teacher's configurations: "${configurations}"
-
-    <a href="createconfiguration.jsp">Create new configuration</a>
+    You have created new configuration, its id:  <b>${configurationId}</b>. Pass it over to your students.
+    <hr>
+     <a href="/config/${configurationId}">See configuration</a>
 </p>
-</html>

@@ -29,16 +29,17 @@ public class TeacherService {
         dao.updateUser(teacher);
     }
 
-    public void addConstraint(OperationConstraint operationConstraint) {
-        dao.addConstraint(operationConstraint);
-    }
-
     public void addUser(Teacher teacher) {
         dao.addUser(teacher);
     }
 
-    public List<OperationConstraint> getAllConstraints() {
-        return dao.getAllConstraints();
+    public void updateUser(Teacher teacher) {
+        dao.updateUser(teacher);
+    }
+
+    public Configuration getConfigurationById(int id) {
+        Configuration configuration = dao.getConfigurationById(id);
+        return configuration;
     }
 
 }

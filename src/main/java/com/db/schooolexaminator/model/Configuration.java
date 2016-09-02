@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.model;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class Configuration {
     private List<Email> emails;
 
     @Getter
-    @OneToMany(cascade = CascadeType.ALL)
+    @JsonUnwrapped
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OperationConstraint> operationConstraints;
 
     @Getter

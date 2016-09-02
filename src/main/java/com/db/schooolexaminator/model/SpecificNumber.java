@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class SpecificNumber {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private int id;
     private int value;
 

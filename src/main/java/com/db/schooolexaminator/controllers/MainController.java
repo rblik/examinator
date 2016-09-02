@@ -4,16 +4,22 @@ import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.TeacherService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
@@ -22,43 +28,45 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private static final String HARDCODED_JSON = "{\"title\":\"TestTitle\",\"emails\":[\"abc@gmail.com\",\" def@adf.com\"],\"frameRows\":\"4\",\"frameCols\":\"3\",\"operationConstraints\":[{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"/\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"divisionWithoutRemainder\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"}]}";
     @Autowired
     private TeacherService teacherService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getUserConfigurations(ModelMap model) {
-//        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-//        List<Configuration> configurations = teacherService.getConfigurations(userName);
-//
-//        model.addAttribute("configurations", configurations);
-
-//        model.addAttribute("qw", SecurityContextHolder.getContext().getAuthentication().getName());
         return "createconfiguration";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     @SneakyThrows
-    public String addConfiguration(@RequestBody String configurationJson) {
-//        configurationJson = HARDCODED_JSON;
-        /*ObjectMapper mapper = new ObjectMapper();
+    public String addConfiguration(ModelMap model, HttpServletRequest request) {
+        String configurationJson = request.getParameter("data");
+        ObjectMapper mapper = new ObjectMapper();
         Configuration configuration = mapper.readValue(configurationJson, Configuration.class);
-        System.out.println(configuration);
+
         Teacher teacher = new Teacher("username", "password", new ArrayList<>());
         teacher.getConfigurations().add(configuration);
 
-        teacherService.addUser(teacher);
-        teacherService.addConfiguration(teacher, configuration);
+        teacherService.updateUser(teacher);
+
         List<Configuration> sameConfigurations = teacherService.getConfigurations("username");
-        System.out.println(sameConfigurations.get(0));
+        Configuration latestConfiguration = sameConfigurations.get(sameConfigurations.size() - 1);
 
-//        OperationConstraint operationConstraint = configuration.getOperationConstraints().get(0);
-//        operationConstraint.setSpecialA(new ArrayList<>());
-//        teacherService.addConstraint(operationConstraint);
+        model.addAttribute("configurationId",latestConfiguration.getConfigurationId());
 
-//        List<OperationConstraint> allOperationConstraints = teacherService.getAllConstraints();
-//        System.out.println(allOperationConstraints.get(0));
-*/
         return "userconfigurations";
+    }
+
+    @RequestMapping(value = "/config/{id}", method = RequestMethod.GET)
+    @SneakyThrows
+    public String getLastConfiguration(@PathVariable("id") int id, ModelMap model) {
+
+        Configuration resultConfiguration = teacherService.getConfigurationById(id);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String resultJSON = objectMapper.writeValueAsString(resultConfiguration);
+        model.addAttribute("configuration", resultJSON);
+        model.addAttribute("id", id);
+
+        return "showconfiguration";
     }
 }

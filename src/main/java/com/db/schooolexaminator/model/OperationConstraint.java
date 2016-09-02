@@ -23,14 +23,21 @@ public class OperationConstraint {
     private int maxB;
     private int minAnswer;
     private int maxAnswer;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> exceptA;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> exceptB;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> specialA;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> specialB;
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> exceptA;
+
+//    @Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> exceptB;
+//    @Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> specialA;
+
+//    @Transient
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> specialB;
     private boolean allowedNegativeAnswer;
     private boolean divisionWithoutRemainder;
 
@@ -55,13 +62,13 @@ public class OperationConstraint {
         return getListInteger(specialB);
     }
 
-    private static List<Integer> getListInteger(List<SpecificNumber> list) {
+    private static List<Integer> getListInteger(List<Integer> list) {
         if (list == null) {
             return null;
         }
         List<Integer> ans = new ArrayList<Integer>();
-        for (SpecificNumber specificNumber : list) {
-            ans.add(specificNumber.getValue());
+        for (Integer specificNumber : list) {
+            ans.add(specificNumber);
         }
         return ans;
     }
