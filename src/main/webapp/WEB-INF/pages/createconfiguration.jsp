@@ -307,27 +307,23 @@
 			{
 				json["divisionWithoutRemainder"] = "true";
 			}
-			if(document.getElementById(operation + 'AConstraints').value == "RangeAndExcept")
-			{
+			if(document.getElementById(operation + 'AConstraints').value == "RangeAndExcept") {
 				json["minA"] = document.getElementById(operation + 'MinA').value;
 				json["maxA"] = document.getElementById(operation + 'MaxA').value;
-				json["exceptA"] = document.getElementById(operation + 'AExcept').value.split(',');
 			}
-			else
-			{
-				json["specificA"] = document.getElementById(operation + 'ASpecific').value.split(',');
-			}
+			json["exceptA"] = document.getElementById(operation + 'AExcept').value.split(',');
+			json["specialA"] = document.getElementById(operation + 'ASpecific').value.split(',');
+
+
 			if(document.getElementById(operation + 'BConstraints').value == "RangeAndExcept")
 			{
 				json["minB"] = document.getElementById(operation + 'MinB').value;
 				json["maxB"] = document.getElementById(operation + 'MaxB').value;
-				json["exceptB"] = document.getElementById(operation + 'BExcept').value.split(',');
+
 			}
-			else
-			{
-				json["specificB"] = document.getElementById(operation + 'BSpecific').value.split(',');
-			}
-			
+			json["exceptB"] = document.getElementById(operation + 'BExcept').value.split(',');
+			json["specialcB"] = document.getElementById(operation + 'BSpecific').value.split(',');
+
 			return json;
 		}
 		
