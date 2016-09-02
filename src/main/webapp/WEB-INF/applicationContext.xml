@@ -7,11 +7,11 @@
 
     <import resource="security.xml"/>
     <import resource="hibernate-context.xml"/>
-    <context:component-scan base-package="com.db.schooolexaminator.services"/>
-    <context:component-scan base-package="com.db.schooolexaminator.config"/>
+    <!--<context:component-scan base-package="com.db.schooolexaminator.services"/>-->
+    <!--<context:component-scan base-package="com.db.schooolexaminator.config"/>-->
 
-    <context:component-scan base-package="com.db.schooolexaminator.telegramserver"/>
+    <!--<context:component-scan base-package="com.db.schooolexaminator.telegramserver"/>-->
 
-    <context:component-scan base-package="com.db.schooolexaminator.dao"/>
+    <context:component-scan base-package="com.db.schooolexaminator"/>
 
 </beans>

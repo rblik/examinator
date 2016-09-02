@@ -38,8 +38,12 @@ public class TeacherService {
     }
 
     public Configuration getConfigurationById(int id) {
-        Configuration configuration = dao.getConfigurationById(id);
-        return configuration;
+        try {
+            Configuration configuration = dao.getConfigurationById(id);
+            return configuration;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

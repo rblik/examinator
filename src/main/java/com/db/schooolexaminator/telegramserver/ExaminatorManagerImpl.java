@@ -2,6 +2,7 @@ package com.db.schooolexaminator.telegramserver;
 
 import com.db.schooolexaminator.dao.ConfigurationDAO;
 import com.db.schooolexaminator.model.Configuration;
+import com.db.schooolexaminator.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +19,12 @@ public class ExaminatorManagerImpl implements ExaminatorManager {
 
 
     @Autowired
-    ConfigurationDAO configurationDAO;
+    TeacherService teacherService;
 
     @Autowired
     private Function<ExaminatorConfiguration, Examinator> supplier;
+
+
 
     ConcurrentMap<Integer, Examinator> examinators;
 
@@ -38,7 +41,7 @@ public class ExaminatorManagerImpl implements ExaminatorManager {
 
     @Override
     public boolean createExaminator(int pupilId, int configurationId) {
-        Configuration c = configurationDAO.getConfigurationbyId(configurationId);
+        Configuration c = teacherService.getConfigurationById(configurationId);
         if (c == null) {
             return false;
         }
