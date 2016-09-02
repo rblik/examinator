@@ -59,7 +59,7 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
         //manager = new ExaminatorManagerImpl();
 
         if (!message.hasText()) {
-            sendTextMessage("I'm too stupid to understand anything except text, sorry", message.getChatId());
+            sendTextMessage("I'm too stupid to understand anything exceptA text, sorry", message.getChatId());
             return;
         }
         String messageText = message.getText();

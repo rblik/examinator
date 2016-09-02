@@ -23,20 +23,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private static final String HARDCODED_JSON = "{\"title\":\"TestTitle\"," +
-            "\"emails\":[\"abc@gmail.com\",\" def@adf.com\"]," +
-            "\"frameRows\":\"4\"," +
-            "\"frameCols\":\"3\"," +
-            "\"operationConstraints\":[" +
-            "{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
-            "{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
-            "{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
-            "{\"sign\":\"/\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"divisionWithoutRemainder\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}" +
-            "]}";
+    private static final String HARDCODED_JSON = "{\"title\":\"TestTitle\",\"emails\":[\"abc@gmail.com\",\" def@adf.com\"],\"frameRows\":\"4\",\"frameCols\":\"3\",\"operationConstraints\":[{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"/\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"divisionWithoutRemainder\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"exceptA\":[\"2\",\"3\"],\"specialA\":[\"1\"],\"minB\":\"1\",\"maxB\":\"10\"}]}";
     @Autowired
     private TeacherService teacherService;
 
-    @RequestMapping(value = "/config", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getUserConfigurations(ModelMap model) {
 //        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 //        List<Configuration> configurations = teacherService.getConfigurations(userName);
@@ -63,7 +54,7 @@ public class MainController {
         System.out.println(sameConfigurations.get(0));
 
 //        OperationConstraint operationConstraint = configuration.getOperationConstraints().get(0);
-//        operationConstraint.setSpecial(new ArrayList<>());
+//        operationConstraint.setSpecialA(new ArrayList<>());
 //        teacherService.addConstraint(operationConstraint);
 
 //        List<OperationConstraint> allOperationConstraints = teacherService.getAllConstraints();

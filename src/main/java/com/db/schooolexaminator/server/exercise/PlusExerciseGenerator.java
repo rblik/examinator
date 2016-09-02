@@ -22,8 +22,8 @@ public class PlusExerciseGenerator implements ExerciseGenerator {
 
 
     public PlusExerciseGenerator(OperationConstraint operationConstraint) {
-        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
-        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptAListInteger(), operationConstraint.getSpecialAListInteger());
+        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptBListInteger(), operationConstraint.getSpecialBListInteger());
         constraintAns = new NumberConstraint(operationConstraint.getMinAnswer(), operationConstraint.getMaxAnswer());
     }
 

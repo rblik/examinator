@@ -21,8 +21,8 @@ public class MinusExerciseGenerator implements ExerciseGenerator  {
 
 
     public MinusExerciseGenerator(OperationConstraint operationConstraint) {
-        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
-        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptAListInteger(), operationConstraint.getSpecialAListInteger());
+        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptBListInteger(), operationConstraint.getSpecialBListInteger());
         isAllowedNegativeAnswer = operationConstraint.isAllowedNegativeAnswer();
     }
 
