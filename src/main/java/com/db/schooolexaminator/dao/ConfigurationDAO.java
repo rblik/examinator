@@ -15,8 +15,8 @@ import java.util.Arrays;
 @Repository
 public class ConfigurationDAO {
     public Configuration getConfigurationbyId(int configurationId) {
-        OperationConstraint c1 = new OperationConstraint("+", 0, 100, 0, 100, 0, 1000, null, null, false, false, 123);
-        OperationConstraint c2 = new OperationConstraint("*", 5, 20, 5, 20, 0, 10000000, null, null, false, false, 178);
+        OperationConstraint c1 = new OperationConstraint("+", 0, 100, 0, 100, 0, 1000, null, null, null, null, false, false, 123);
+        OperationConstraint c2 = new OperationConstraint("*", 5, 20, 5, 20, 0, 10000000, null, null, null, null, false, false, 178);
 
         Email e1 = new Email("maxim.usmanov23@gmail.com");
         Email e2 = new Email("fedor.korchaznikov@gmail.com");
