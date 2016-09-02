@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.server;
 
+import com.db.schooolexaminator.server.mailsender.MailSender;
 import com.db.schooolexaminator.server.picture.PictureManager;
 import com.db.schooolexaminator.server.telegrambot.ExaminatorMessageHandler;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,7 +17,8 @@ public class Main {
 
         ExaminatorMessageHandler examinatorMessageHandler = context.getBean("examinatorMessageHandler", ExaminatorMessageHandler.class);
 
-
+        /*MailSender ms = context.getBean("mailSender", MailSender.class);
+        ms.sendEmail("maxim.usmanov23@gmail.com", "Introduction", "Hello. Stas is unbelievable.");*/
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(examinatorMessageHandler);

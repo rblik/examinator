@@ -5,6 +5,7 @@ import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.server.Examinator;
 import com.db.schooolexaminator.server.ExaminatorImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 
 import java.util.function.Function;
@@ -12,8 +13,8 @@ import java.util.function.Function;
 
 
 @org.springframework.context.annotation.Configuration
+@PropertySource("classpath:mail.properties")
 public class ExaminatorManagerConfig {
-
 
     @Bean
     public Function<Configuration, Examinator> examinatorSupplier(){

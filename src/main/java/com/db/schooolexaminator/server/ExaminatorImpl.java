@@ -1,11 +1,15 @@
 package com.db.schooolexaminator.server;
 
 import com.db.schooolexaminator.model.Configuration;
+import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.server.exercise.*;
+import com.db.schooolexaminator.server.mailsender.MailSender;
 import com.db.schooolexaminator.server.picture.PictureManager;
 import lombok.Getter;
 import lombok.Setter;
+import org.glassfish.grizzly.http.util.TimeStamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +22,10 @@ import java.util.Random;
 
 public class ExaminatorImpl implements Examinator {
 
+
+    @Autowired
+    private MailSender mailSender;
+
     @Setter @Getter
     private String pupilName;
 
@@ -26,10 +34,11 @@ public class ExaminatorImpl implements Examinator {
 
     private PictureManager pictureManager;
 
-
     private List<ExerciseGenerator> generators;
-
     Exercise currentExercise;
+
+
+
 
     private int countIncorrectAnswer = 0;
     private int countSkipQuestions = 0;
@@ -100,7 +109,14 @@ public class ExaminatorImpl implements Examinator {
     public Exercise generateNextExercise() {
         Random r = new Random();
         if (countCorrectAnswers == countNumberExercise) {
-            //TODO send emails
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (Email email : configuration.getEmails()) {
+                        mailSender.sendEmail(email.getAddress(), pupilName + " exam " + "results", countCorrectAnswers + " " + countIncorrectAnswer + " " + countSkipQuestions);
+                    }
+                }
+            }).start();
             return null;
         } else {
             ExerciseGenerator exerciseGenerator = generators.get(r.nextInt(generators.size()));
