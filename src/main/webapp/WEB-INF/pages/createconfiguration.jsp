@@ -368,5 +368,14 @@
 			//alert(JSON.stringify(allSettings));
 			//document.write(JSON.stringify(allSettings));
 		}
+
+        function getArrayFromStringSplittedByComma(str)
+        {
+            if(str==null || str==" " || str.length == 0)
+            {
+                return [];
+            }
+            else return str.split(',');
+        }
 	</script>
 </html>

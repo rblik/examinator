@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 
 /**
@@ -23,12 +25,12 @@ public class ExaminatorManagerImpl implements ExaminatorManager {
     @Autowired
     private Function<Configuration, Examinator> supplier;
 
-    Map<Integer, Examinator> examinators;
+    ConcurrentMap<Integer, Examinator> examinators;
 
 
     @PostConstruct
     public void init() {
-        examinators = new HashMap<Integer, Examinator>();
+        examinators = new ConcurrentHashMap<Integer,Examinator>();
     }
 
     @Override
@@ -51,7 +53,6 @@ public class ExaminatorManagerImpl implements ExaminatorManager {
     public Examinator getExaminator(int pupilId) {
         return examinators.get(pupilId);
     }
-
 
     public void removeExaminator(int pupilId) {
         examinators.remove(pupilId);

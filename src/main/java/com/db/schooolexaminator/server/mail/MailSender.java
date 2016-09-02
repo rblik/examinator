@@ -1,24 +1,35 @@
-package com.db.schooolexaminator.server.mailsender;
+package com.db.schooolexaminator.server.mail;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
 
-public class SendEmail {
+@Component
+public class MailSender {
 
-    final String senderEmailID = "watson9494@gmail.com";
-    final String senderPassword = "";
-    final String emailSMTPserver = "smtp.gmail.com";
-    final String emailServerPort = "465";
-    String receiverEmailID = "maxim.usmanov23";
-    static String emailSubject = "Test Mail";
-    static String emailBody = ":)";
-    public SendEmail(String receiverEmailID, String emailSubject, String emailBody)
-    {
-        this.receiverEmailID=receiverEmailID;
-        this.emailSubject=emailSubject;
-        this.emailBody=emailBody;
-        Properties props = new Properties();
+    @Value("${senderEmail}")
+    private String senderEmailID;
+
+    @Value("${senderPassword}")
+    private String senderPassword;
+
+    @Value("${emailSMTPserver}")
+    private String emailSMTPserver;
+
+    @Value("${emailServerPort}")
+    private String emailServerPort;
+
+
+    Properties props;
+
+
+    @PostConstruct
+    public void init() {
+        props = new Properties();
         props.put("mail.smtp.user",senderEmailID);
         props.put("mail.smtp.host", emailSMTPserver);
         props.put("mail.smtp.port", emailServerPort);
@@ -27,7 +38,10 @@ public class SendEmail {
         props.put("mail.smtp.socketFactory.port", emailServerPort);
         props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false");
-        SecurityManager security = System.getSecurityManager();
+    }
+
+
+    public void sendEmail(String receiverEmailID, String emailSubject, String emailBody) {
         try
         {
             Authenticator auth = new SMTPAuthenticator();
@@ -39,13 +53,15 @@ public class SendEmail {
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(receiverEmailID));
             Transport.send(msg);
-            System.out.println("Message send Successfully:)");
+            System.out.println("Message to " + receiverEmailID + " send Successfully");
         }
         catch (Exception mex)
         {
             mex.printStackTrace();
         }
     }
+
+
     public class SMTPAuthenticator extends javax.mail.Authenticator
     {
         public PasswordAuthentication getPasswordAuthentication()
@@ -53,10 +69,4 @@ public class SendEmail {
             return new PasswordAuthentication(senderEmailID, senderPassword);
         }
     }
-    public static void main(String[] args) {
-        SendEmail mailSender;
-        mailSender = new SendEmail("maxim.usmanov23@gmail.com","Testing Code 2 example","Testing Code Body yess");
-
-    }
-
 }
