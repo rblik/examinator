@@ -1,18 +1,86 @@
 <!DOCTYPE html>
-<html>
-	<p>
-		Set title of course:
-		<input id="title" type="text" />
-	</p>
-	<p>
-		Set emails (divide by commas)
-		<input id="emails" type="text" />
-	</p>
-	<p>
-		Set amount of expressions:<br>
-		Columns: <input id="pictureCols" type="number" />
-		Rows: <input id="pictureRows" type="number" />
-	</p>
+<head>
+	<style>
+		body {
+			padding-top: 0px; /* 60px to make the container go all the way to the bottom of the topbar */
+			padding-bottom: 10px;
+			position: relative;
+			margin-left: 30px;
+			font: 10, Georgia, Times, serif;
+		}
+
+		@media (max-width: 979px) {
+			body {
+				padding-top: 0px;
+			}
+		}
+
+		input{
+			border-radius:5px;
+			min-height: 20px;
+		}
+
+		hr{
+			margin-left: -30px;
+			max-width: 800px;
+		}
+
+		div div, div p input[type=checkbox]
+		{
+			margin-left: 25px;
+		}
+		table{
+			border-radius:5px;
+			border-width: 1px;
+			border-color: #ccc;
+			margin-left: 50px;
+		}
+		thead{
+			font-weight:bold;
+			text-align: center;
+		}
+		select {
+			border-radius:5px;
+			min-height: 20px;
+			min-width: 100px;
+			max-width: 300px;
+			width: 100%;
+		}
+		input[type=number]{
+			min-width: 20px;
+			max-width: 50px;
+			max-height: 24px;
+		}
+		input[type=text]{
+			width: 95%;
+			max-width: 300px;
+			max-height: 24px;
+		}
+		input[type=button]
+		{
+			width: 100px;
+			height: 30px;
+			text-align: center;
+			margin-bottom: 100px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Create new exam configuration</h2>
+	<table border=0">
+		<tr>
+			<td>Set title of course:</td>
+			<td width=350><input id="title" type="text" placeholder="ex.: Exam for group 123"/></td>
+		</tr>
+		<tr>
+			<td>Set emails (divide by commas)</td>
+			<td><input id="emails" type="text" placeholder="ex.: john.doe@gmail.com, azaz.azazov@mail.ru"/></td>
+		</tr>
+		<tr>
+			<td>Set amount of expressions:</td>
+			<td><input id="pictureCols" type="number" placeholder="cols"/>x <input id="pictureRows" type="number" placeholder="rows"/></td>
+		</tr>
+	</table>
 	
 	<hr>
 	
@@ -378,4 +446,5 @@
             else return str.split(',');
         }
 	</script>
+</body>
 </html>
