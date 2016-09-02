@@ -322,7 +322,7 @@
 
 			}
 			json["exceptB"] = document.getElementById(operation + 'BExcept').value.split(',');
-			json["specialcB"] = document.getElementById(operation + 'BSpecific').value.split(',');
+			json["specialB"] = document.getElementById(operation + 'BSpecific').value.split(',');
 
 			return json;
 		}
@@ -354,19 +354,19 @@
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				type: "POST",
+				type: "GET",
 				url:  "http://localhost:8080/add",
-				data: "configuration="+JSON.stringify(allSettings),
+				data: {"data":JSON.stringify(allSettings)},
 				//Output php feedback
 				success: function(html)
 				{
 					//Clear input box
-					alert("done");
+					document.write(html);
 				}
 			});
 
 			//alert(JSON.stringify(allSettings));
-			document.write(JSON.stringify(allSettings));
+			//document.write(JSON.stringify(allSettings));
 		}
 	</script>
 </html>

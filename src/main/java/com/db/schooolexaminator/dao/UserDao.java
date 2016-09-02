@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.dao;
 
+import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Teacher;
 
@@ -14,7 +15,5 @@ public interface UserDao{
     void updateUser(Teacher teacher);
     void addUser(Teacher teacher);
 
-    void addConstraint(OperationConstraint operationConstraint);
-
-    List<OperationConstraint> getAllConstraints();
+    Configuration getConfigurationById(int id);
 }

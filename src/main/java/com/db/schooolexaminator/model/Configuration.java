@@ -26,7 +26,7 @@ public class Configuration {
 
     @Getter
     @JsonUnwrapped
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OperationConstraint> operationConstraints;
 
     @Getter

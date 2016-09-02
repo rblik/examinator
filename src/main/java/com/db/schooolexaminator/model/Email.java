@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 public class Email {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy= GenerationType.TABLE)
     private int id;
     private String address;
 
