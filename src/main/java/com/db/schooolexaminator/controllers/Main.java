@@ -12,7 +12,7 @@ public class Main {
             "\"emails\":[\"abc@gmail.com\",\" def@adf.com\"]," +
             "\"frameRows\":\"4\"," +
             "\"frameCols\":\"3\"," +
-            "\"constraints\":[" +
+            "\"operationConstraints\":[" +
             "{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
             "{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
             "{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}," +
@@ -30,4 +30,4 @@ public class Main {
 
 
 
-//"{\"title\":\"TestTitle\",\"emails\":[\"abc@gmail.com\",\" def@adf.com\"],\"frameRows\":\"4\",\"frameCols\":\"3\",\"constraints\":[{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"/\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"divisionWithoutRemainder\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}]}"
+//"{\"title\":\"TestTitle\",\"emails\":[\"abc@gmail.com\",\" def@adf.com\"],\"frameRows\":\"4\",\"frameCols\":\"3\",\"operationConstraints\":[{\"sign\":\"+\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"-\",\"allowedNegativeAnswer\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"*\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"},{\"sign\":\"/\",\"minAnswer\":\"1\",\"maxAnswer\":\"10\",\"divisionWithoutRemainder\":\"true\",\"minA\":\"1\",\"maxA\":\"10\",\"except\":[\"2\",\"3\"],\"minB\":\"1\",\"maxB\":\"10\"}]}"

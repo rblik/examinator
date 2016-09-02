@@ -1,6 +1,6 @@
 package com.db.schooolexaminator.server.exercise;
 
-import com.db.schooolexaminator.model.Constraint;
+import com.db.schooolexaminator.model.OperationConstraint;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 public class MinusExerciseGenerator implements ExerciseGenerator  {
-    Constraint constraint;
+    OperationConstraint operationConstraint;
 
     NumberConstraint constraintA;
     NumberConstraint constraintB;
@@ -20,10 +20,10 @@ public class MinusExerciseGenerator implements ExerciseGenerator  {
 
 
 
-    public MinusExerciseGenerator(Constraint constraint) {
-        constraintA = new NumberConstraint(constraint.getMinA(), constraint.getMaxA(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
-        constraintB = new NumberConstraint(constraint.getMinB(), constraint.getMaxB(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
-        isAllowedNegativeAnswer = constraint.isAllowedNegativeAnswer();
+    public MinusExerciseGenerator(OperationConstraint operationConstraint) {
+        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        isAllowedNegativeAnswer = operationConstraint.isAllowedNegativeAnswer();
     }
 
     @Override

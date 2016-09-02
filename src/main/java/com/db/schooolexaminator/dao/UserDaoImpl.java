@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.dao;
 
+import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Teacher;
 import org.springframework.stereotype.Repository;
 
@@ -33,5 +34,18 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void addUser(Teacher teacher) {
         entityManager.persist(teacher);
+    }
+
+    @Override
+    public void addConstraint(OperationConstraint operationConstraint) {
+        entityManager.persist(operationConstraint);
+    }
+
+    @Override
+    public List<OperationConstraint> getAllConstraints() {
+        Query query = entityManager.createQuery("from Constraint");
+        List<OperationConstraint> operationConstraints = query.getResultList();
+
+        return operationConstraints;
     }
 }

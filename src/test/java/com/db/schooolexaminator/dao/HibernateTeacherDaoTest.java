@@ -1,7 +1,7 @@
 package com.db.schooolexaminator.dao;
 
 import com.db.schooolexaminator.model.Configuration;
-import com.db.schooolexaminator.model.Constraint;
+import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.TeacherService;
@@ -29,8 +29,8 @@ public class HibernateTeacherDaoTest {
     public void addConfiguration() throws Exception {
         Teacher teacher = new Teacher("username", "password", new ArrayList<Configuration>());
         teacherService.addUser(teacher);
-        Constraint constraint = new Constraint();
-        Configuration configuration = new Configuration("Title", Arrays.asList(new Email("one@gmail.com")),Arrays.asList(constraint), 3,4);
+        OperationConstraint operationConstraint = new OperationConstraint();
+        Configuration configuration = new Configuration("Title", Arrays.asList(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
         teacherService.addConfiguration(teacher, configuration);
         List<Configuration> configurations = teacherService.getConfigurations(teacher.getUserName());
         System.out.println(configurations);

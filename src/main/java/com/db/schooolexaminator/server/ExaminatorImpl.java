@@ -1,7 +1,7 @@
 package com.db.schooolexaminator.server;
 
 import com.db.schooolexaminator.model.Configuration;
-import com.db.schooolexaminator.model.Constraint;
+import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.server.exercise.*;
 import com.db.schooolexaminator.server.picture.PictureManager;
 import lombok.Getter;
@@ -42,7 +42,7 @@ public class ExaminatorImpl implements Examinator {
 
     private void init() {
         generators = new ArrayList<ExerciseGenerator>();
-        for (Constraint c : configuration.getConstraints()) {
+        for (OperationConstraint c : configuration.getOperationConstraints()) {
             if (c.getSign().equals("+")) {
                 generators.add(new PlusExerciseGenerator(c));
             }

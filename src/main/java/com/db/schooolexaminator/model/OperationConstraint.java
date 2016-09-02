@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Constraint {
+public class OperationConstraint {
     private String sign;
     private int minA;
     private int maxA;

@@ -27,17 +27,17 @@ public class Configuration {
     @Getter
     @JsonUnwrapped
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Constraint> constraints;
+    private List<OperationConstraint> operationConstraints;
 
     @Getter
     private int frameCols;
     @Getter
     private int frameRows;
 
-    public Configuration(String title, List<Email> emails, List<Constraint> constraints, int frameCols, int frameRows) {
+    public Configuration(String title, List<Email> emails, List<OperationConstraint> operationConstraints, int frameCols, int frameRows) {
         this.title = title;
         this.emails = emails;
-        this.constraints = constraints;
+        this.operationConstraints = operationConstraints;
         this.frameCols = frameCols;
         this.frameRows = frameRows;
     }
@@ -48,7 +48,7 @@ public class Configuration {
                 "configurationId=" + configurationId +
                 ", title='" + title + '\'' +
                 ", emails=" + emails +
-                ", constraints=" + constraints +
+                ", operationConstraints=" + operationConstraints +
                 ", frameCols=" + frameCols +
                 ", frameRows=" + frameRows +
                 '}';

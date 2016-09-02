@@ -1,6 +1,6 @@
 package com.db.schooolexaminator.server.exercise;
 
-import com.db.schooolexaminator.model.Constraint;
+import com.db.schooolexaminator.model.OperationConstraint;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 public class DivisionExerciseGenerator implements ExerciseGenerator {
-    Constraint constraint;
+    OperationConstraint operationConstraint;
 
     NumberConstraint constraintA;
     NumberConstraint constraintB;
@@ -21,11 +21,11 @@ public class DivisionExerciseGenerator implements ExerciseGenerator {
 
 
 
-    public DivisionExerciseGenerator(Constraint constraint) {
-        constraintA = new NumberConstraint(constraint.getMinA(), constraint.getMaxA(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
-        constraintB = new NumberConstraint(constraint.getMinB(), constraint.getMaxB(), constraint.getExceptListInteger(), constraint.getSpecialListInteger());
-        constraintAns = new NumberConstraint(constraint.getMinAnswer(), constraint.getMaxAnswer());
-        isDivisionWithoutRemainder = constraint.isDivisionWithoutRemainder();
+    public DivisionExerciseGenerator(OperationConstraint operationConstraint) {
+        constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptListInteger(), operationConstraint.getSpecialListInteger());
+        constraintAns = new NumberConstraint(operationConstraint.getMinAnswer(), operationConstraint.getMaxAnswer());
+        isDivisionWithoutRemainder = operationConstraint.isDivisionWithoutRemainder();
     }
 
     @Override

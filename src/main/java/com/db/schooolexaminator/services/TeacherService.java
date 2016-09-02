@@ -2,6 +2,7 @@ package com.db.schooolexaminator.services;
 
 import com.db.schooolexaminator.dao.UserDao;
 import com.db.schooolexaminator.model.Configuration;
+import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,16 @@ public class TeacherService {
         dao.updateUser(teacher);
     }
 
+    public void addConstraint(OperationConstraint operationConstraint) {
+        dao.addConstraint(operationConstraint);
+    }
 
     public void addUser(Teacher teacher) {
         dao.addUser(teacher);
     }
+
+    public List<OperationConstraint> getAllConstraints() {
+        return dao.getAllConstraints();
+    }
+
 }
