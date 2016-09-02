@@ -30,12 +30,12 @@ public class NumberConstraint {
     }
 
     public void initMinMaxValue(Integer minValue, Integer maxValue) {
-        if (minValue == null) {
+        if ((minValue == null) || ((minValue == 0) && (maxValue == 0)))  {
             this.minValue = Integer.MIN_VALUE;
         } else {
             this.minValue = minValue;
         }
-        if (maxValue == null) {
+        if ((maxValue == null) || ((minValue == 0) && (maxValue == 0))) {
             this.maxValue = Integer.MAX_VALUE;
         } else {
             this.maxValue = maxValue;
