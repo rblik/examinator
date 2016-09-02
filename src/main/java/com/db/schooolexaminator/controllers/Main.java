@@ -1,7 +1,6 @@
 package com.db.schooolexaminator.controllers;
 
 import com.db.schooolexaminator.model.Configuration;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
 /**
@@ -21,10 +20,10 @@ public class Main {
 
     @SneakyThrows
     public static void main(String[] args) {
-        String configurationJson = HARDCODED_JSON;
+        /*String configurationJson = HARDCODED_JSON;
         ObjectMapper mapper = new ObjectMapper();
         Configuration configuration = mapper.readValue(configurationJson, Configuration.class);
-        System.out.println(configuration);
+        System.out.println(configuration);*/
     }
 }
 

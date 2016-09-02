@@ -4,7 +4,6 @@ import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.TeacherService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +41,7 @@ public class MainController {
     @SneakyThrows
     public String addConfiguration(@RequestBody String configurationJson) {
 //        configurationJson = HARDCODED_JSON;
-        ObjectMapper mapper = new ObjectMapper();
+        /*ObjectMapper mapper = new ObjectMapper();
         Configuration configuration = mapper.readValue(configurationJson, Configuration.class);
         System.out.println(configuration);
         Teacher teacher = new Teacher("username", "password", new ArrayList<>());
@@ -59,7 +58,7 @@ public class MainController {
 
 //        List<OperationConstraint> allOperationConstraints = teacherService.getAllConstraints();
 //        System.out.println(allOperationConstraints.get(0));
-
+*/
         return "userconfigurations";
     }
 }

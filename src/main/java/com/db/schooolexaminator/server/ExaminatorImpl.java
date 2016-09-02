@@ -4,11 +4,14 @@ import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.server.exercise.*;
-import com.db.schooolexaminator.server.mailsender.MailSender;
+import com.db.schooolexaminator.server.mail.MailAssistant;
+import com.db.schooolexaminator.server.mail.MailAssistantImpl;
+import com.db.schooolexaminator.server.mail.MailSender;
 import com.db.schooolexaminator.server.picture.PictureManager;
+import com.db.schooolexaminator.server.statistics.Statistics;
+import com.db.schooolexaminator.server.statistics.StatisticsImpl;
 import lombok.Getter;
 import lombok.Setter;
-import org.glassfish.grizzly.http.util.TimeStamp;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -22,10 +25,6 @@ import java.util.Random;
 
 public class ExaminatorImpl implements Examinator {
 
-
-    @Autowired
-    private MailSender mailSender;
-
     @Setter @Getter
     private String pupilName;
 
@@ -35,17 +34,17 @@ public class ExaminatorImpl implements Examinator {
     private PictureManager pictureManager;
 
     private List<ExerciseGenerator> generators;
-    Exercise currentExercise;
+    private Exercise currentExercise;
+    private boolean isFirstGeneration;
 
+    Statistics statistics;
 
+    @Autowired
+    private MailSender mailSender;
 
+    private MailAssistant mailAssistant;
 
-    private int countIncorrectAnswer = 0;
-    private int countSkipQuestions = 0;
-    private int countCorrectAnswers = 0;
-
-    private int countNumberExercise;
-
+    Random r = new Random();
 
     public ExaminatorImpl() {}
 
@@ -66,7 +65,9 @@ public class ExaminatorImpl implements Examinator {
             }
         }
         pictureManager = new PictureManager("C:\\Users\\JavaSchoolStudent\\Desktop\\SchoolExaminator\\src\\main\\resources\\pictures\\picture.jpg" ,configuration.getFrameRows(), configuration.getFrameCols());
-        countNumberExercise = configuration.getFrameCols() * configuration.getFrameRows();
+        statistics = new StatisticsImpl(configuration.getFrameCols() * configuration.getFrameRows());
+        mailAssistant = new MailAssistantImpl(configuration.getListEmailsString(), mailSender);
+        isFirstGeneration = true;
     }
 
     public void setConfiguration(Configuration configuration) {
@@ -78,11 +79,12 @@ public class ExaminatorImpl implements Examinator {
     @Override
     public boolean answerIsCorrect(int answer) {
         if (answer == currentExercise.getAnswer()) {
-            countCorrectAnswers++;
+            statistics.correctAnswer();
             pictureManager.openPiece();
             currentExercise = null;
             return true;
         } else {
+            statistics.incorrectAnswer();
             return false;
         }
     }
@@ -91,7 +93,7 @@ public class ExaminatorImpl implements Examinator {
     public int skipCurrent() {
         int ans = currentExercise.getAnswer();
         currentExercise = null;
-        countSkipQuestions++;
+        statistics.skipAnswer();
         return ans;
     }
 
@@ -107,14 +109,16 @@ public class ExaminatorImpl implements Examinator {
 
     @Override
     public Exercise generateNextExercise() {
-        Random r = new Random();
-        if (countCorrectAnswers == countNumberExercise) {
+        if (isFirstGeneration) {
+            statistics.startExam();
+            isFirstGeneration = false;
+        }
+        if (statistics.getCountCorrectAnswers() == statistics.getCountExercises()) {
+            statistics.finishExam();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    for (Email email : configuration.getEmails()) {
-                        mailSender.sendEmail(email.getAddress(), pupilName + " exam " + "results", countCorrectAnswers + " " + countIncorrectAnswer + " " + countSkipQuestions);
-                    }
+                    mailAssistant.sendExamStatistics(pupilName, configuration.getTitle(), statistics);
                 }
             }).start();
             return null;
@@ -124,8 +128,6 @@ public class ExaminatorImpl implements Examinator {
             currentExercise = exercise;
             return exercise;
         }
-
-
     }
 
     @Override

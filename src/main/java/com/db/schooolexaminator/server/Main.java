@@ -1,7 +1,5 @@
 package com.db.schooolexaminator.server;
 
-import com.db.schooolexaminator.server.mailsender.MailSender;
-import com.db.schooolexaminator.server.picture.PictureManager;
 import com.db.schooolexaminator.server.telegrambot.ExaminatorMessageHandler;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.telegram.telegrambots.TelegramApiException;

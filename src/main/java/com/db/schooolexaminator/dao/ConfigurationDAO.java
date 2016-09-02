@@ -22,6 +22,6 @@ public class ConfigurationDAO {
         Email e2 = new Email("fedor.korchaznikov@gmail.com");
         Email e3 = new Email("watson9494@gmail.com");
 
-        return new Configuration("privet", Arrays.asList(e1, e2, e3),Arrays.asList(c1, c2), 3, 3);
+        return new Configuration("Plus/Multiplication Exam", Arrays.asList(e1, e2, e3),Arrays.asList(c1, c2), 3, 3);
     }
 }

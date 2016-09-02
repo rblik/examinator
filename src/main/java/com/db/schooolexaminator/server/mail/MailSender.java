@@ -1,4 +1,4 @@
-package com.db.schooolexaminator.server.mailsender;
+package com.db.schooolexaminator.server.mail;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,11 +23,6 @@ public class MailSender {
     @Value("${emailServerPort}")
     private String emailServerPort;
 
-
-
-    /*String receiverEmailID = "maxim.usmanov23";
-    static String emailSubject = "Test Mail";
-    static String emailBody = ":)";*/
 
     Properties props;
 

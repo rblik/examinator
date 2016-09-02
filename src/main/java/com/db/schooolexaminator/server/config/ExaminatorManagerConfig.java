@@ -25,7 +25,6 @@ public class ExaminatorManagerConfig {
         };
     }
 
-
     @Bean
     public ConfigurationDAO configurationDAO() {
         return new ConfigurationDAO();
@@ -36,7 +35,5 @@ public class ExaminatorManagerConfig {
     public Examinator examinator() {
         return new ExaminatorImpl();
     }
-
-
 
 }

@@ -1,9 +1,9 @@
 package com.db.schooolexaminator.model;
 
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +25,6 @@ public class Configuration {
     private List<Email> emails;
 
     @Getter
-    @JsonUnwrapped
     @OneToMany(cascade = CascadeType.ALL)
     private List<OperationConstraint> operationConstraints;
 
@@ -52,5 +51,14 @@ public class Configuration {
                 ", frameCols=" + frameCols +
                 ", frameRows=" + frameRows +
                 '}';
+    }
+
+
+    public List<String> getListEmailsString() {
+        List<String> stringEmails = new ArrayList<String>();
+        for (Email email : emails) {
+            stringEmails.add(email.getAddress());
+        }
+        return stringEmails;
     }
 }
