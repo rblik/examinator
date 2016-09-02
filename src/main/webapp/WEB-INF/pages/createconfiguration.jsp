@@ -214,7 +214,7 @@
 	
 	<!-- MULTI -->
 	<p>
-		<h2><input type="checkbox" id="multiConstraints" onchange="showCheckedBlock(this)"/> Include expressions with multiplection (*) operation</h2>
+		<h2><input type="checkbox" id="multiConstraints" onchange="showCheckedBlock(this)"/> Include expressions with multiplication (*) operation</h2>
 	</p>
 	<div id="multiConstraintsDiv" style="display:none">
 		<p>
