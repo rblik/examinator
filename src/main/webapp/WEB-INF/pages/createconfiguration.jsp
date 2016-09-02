@@ -336,8 +336,8 @@
 			var allSettings = {};
 			allSettings["title"] = document.getElementById('title').value;
 			allSettings["emails"] = document.getElementById('emails').value.split(',');
-			allSettings["rows"] = document.getElementById('pictureRows').value;
-			allSettings["columns"] = document.getElementById('pictureCols').value;
+			allSettings["frameRows"] = document.getElementById('pictureRows').value;
+			allSettings["frameCols"] = document.getElementById('pictureCols').value;
 			
 			var operationsSettings = [];
 			
@@ -352,7 +352,7 @@
 					operationsSettings.push(getParamsOfOperation(operation, sign));
 				}
 			}
-			allSettings["operations"] = operationsSettings;
+			allSettings["operationConstraints"] = operationsSettings;
 			$.ajax({
 				headers: {
 					'Accept': 'application/json',
