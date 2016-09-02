@@ -24,9 +24,13 @@ public class OperationConstraint {
     private int minAnswer;
     private int maxAnswer;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> except;
+    private List<SpecificNumber> exceptA;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<SpecificNumber> special;
+    private List<SpecificNumber> exceptB;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<SpecificNumber> specialA;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<SpecificNumber> specialB;
     private boolean allowedNegativeAnswer;
     private boolean divisionWithoutRemainder;
 
@@ -35,12 +39,20 @@ public class OperationConstraint {
     private int constraintId;
 
 
-    public List<Integer> getExceptListInteger() {
-        return getListInteger(except);
+    public List<Integer> getExceptAListInteger() {
+        return getListInteger(exceptA);
     }
 
-    public List<Integer> getSpecialListInteger() {
-        return getListInteger(special);
+    public List<Integer> getSpecialAListInteger() {
+        return getListInteger(specialA);
+    }
+
+    public List<Integer> getExceptBListInteger() {
+        return getListInteger(exceptB);
+    }
+
+    public List<Integer> getSpecialBListInteger() {
+        return getListInteger(specialB);
     }
 
     private static List<Integer> getListInteger(List<SpecificNumber> list) {
