@@ -60,11 +60,14 @@ public class MainController {
     }
 
     @RequestMapping(value = "/config/{id}", method = RequestMethod.GET)
+    @SneakyThrows
     public String getLastConfiguration(@PathVariable("id") int id, ModelMap model) {
 
         Configuration resultConfiguration = teacherService.getConfigurationById(id);
 
-        model.addAttribute("configuration", resultConfiguration);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String resultJSON = objectMapper.writeValueAsString(resultConfiguration);
+        model.addAttribute("configuration", resultJSON);
         model.addAttribute("id", id);
 
         return "showconfiguration";

@@ -24,6 +24,10 @@ public class TeacherService {
         return teacher.getConfigurations();
     }
 
+//    public List<Teacher> getTeacherByName(String userName) {
+//        return dao.findByName(userName).get(0);
+//    }
+
     public void addConfiguration(Teacher teacher, Configuration configuration) {
         teacher.getConfigurations().add(configuration);
         dao.updateUser(teacher);
