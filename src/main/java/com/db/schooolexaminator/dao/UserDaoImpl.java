@@ -18,9 +18,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<Teacher> findByName(String userName) {
-//        Query query = entityManager.createQuery("select t from Teacher as t where t.userName=:userName");
-//        List<Teacher> teachers = query.setParameter("userName", userName).getResultList();
-
         Query query = entityManager.createQuery("select t from Teacher as t where t.userName=:userName");
         List<Teacher> teachers = query.setParameter("userName", userName).getResultList();
 

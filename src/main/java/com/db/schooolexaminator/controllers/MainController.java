@@ -33,9 +33,6 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getUserConfigurations(ModelMap model) {
-//        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-//        List<Configuration> configurations = teacherService.getConfigurations(userName);
-
         return "createconfiguration";
     }
 
