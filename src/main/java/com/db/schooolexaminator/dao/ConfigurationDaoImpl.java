@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
  */
 
 @Repository
-public class ConfigurationDaoImpl implements ConfigurationDaoI {
+public class ConfigurationDaoImpl implements ConfigurationDao {
     @PersistenceContext
     private EntityManager entityManager;
 

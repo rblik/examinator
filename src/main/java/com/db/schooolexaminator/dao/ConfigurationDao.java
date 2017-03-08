@@ -5,7 +5,7 @@ import com.db.schooolexaminator.model.Configuration;
 /**
  * Created by Blik on 03/08/2017.
  */
-public interface ConfigurationDaoI {
+public interface ConfigurationDao {
 
     Configuration get(int id);
 }

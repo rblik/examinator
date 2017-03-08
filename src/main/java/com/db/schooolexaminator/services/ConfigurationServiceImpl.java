@@ -1,6 +1,6 @@
 package com.db.schooolexaminator.services;
 
-import com.db.schooolexaminator.dao.ConfigurationDaoI;
+import com.db.schooolexaminator.dao.ConfigurationDao;
 import com.db.schooolexaminator.dao.TeacherDao;
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.Teacher;
@@ -19,7 +19,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     private TeacherDao teacherDao;
 
     @Autowired
-    private ConfigurationDaoI configurationDao;
+    private ConfigurationDao configurationDao;
 
     @Override
     public List<Configuration> getByUserName(String userName) {
