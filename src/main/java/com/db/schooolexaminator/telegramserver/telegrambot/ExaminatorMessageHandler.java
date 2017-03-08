@@ -40,10 +40,13 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
     }
 
     public String getBotUsername() {
-        return "telegrambot.Examinator";
+//        return "telegrambot.Examinator";
+        return "ExaminatorBot";
+
     }
     public String getBotToken() {
-        return "220527772:AAGPz-VMhMiejjcd6YvEPHwVIpfZZsRHS9E";
+        //        return "220527772:AAGPz-VMhMiejjcd6YvEPHwVIpfZZsRHS9E";
+        return "352487263:AAE_2O65x1UKgQ-jNWwmqrALkAU5n_SaVgI";
     }
 
     @Autowired

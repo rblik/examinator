@@ -18,7 +18,7 @@ public class PictureManager {
     private String defaultFileName;
 
     String getPathToDir() {
-        return "C:\\Users\\JavaSchoolStudent\\Desktop\\SchoolExaminator\\src\\main\\resources\\pictures";
+        return "E:\\\\IdeaProjects\\\\SchoolExaminator\\\\src\\\\main\\\\resources\\\\pictures";
     }
 
 
