@@ -43,7 +43,7 @@ public class OperationConstraint {
     private boolean divisionWithoutRemainder;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int constraintId;
 
 

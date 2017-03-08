@@ -14,13 +14,13 @@ import java.util.List;
 @Getter
 public class Teacher {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     String userName;
     String password;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Configuration> configurations;
 
     public Teacher(String username, String password, List<Configuration> configurations) {

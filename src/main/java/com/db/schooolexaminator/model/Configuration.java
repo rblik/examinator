@@ -18,7 +18,7 @@ import java.util.Set;
 public class Configuration {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int configurationId;
 
     private String title;

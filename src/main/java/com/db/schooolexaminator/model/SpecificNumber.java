@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class SpecificNumber {
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     private int value;
 
