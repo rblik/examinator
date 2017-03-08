@@ -21,7 +21,7 @@ public class Teacher {
     String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    List<Configuration> configurations;
+    private List<Configuration> configurations;
 
     public Teacher(String username, String password, List<Configuration> configurations) {
         this.userName = username;
