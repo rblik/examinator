@@ -4,6 +4,7 @@ import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.OperationConstraint;
 import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.Teacher;
+import com.db.schooolexaminator.services.ConfigurationService;
 import com.db.schooolexaminator.services.TeacherService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,20 +20,22 @@ import java.util.List;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-services-context.xml")
+@ContextConfiguration({"classpath:test-services-context.xml", "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
 public class HibernateTeacherDaoTest {
 
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Test
     public void addConfiguration() throws Exception {
         Teacher teacher = new Teacher("username", "password", new ArrayList<Configuration>());
-        teacherService.addUser(teacher);
+        teacherService.add(teacher);
         OperationConstraint operationConstraint = new OperationConstraint();
         Configuration configuration = new Configuration("Title", Arrays.asList(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
-        teacherService.addConfiguration(teacher, configuration);
-        List<Configuration> configurations = teacherService.getConfigurations(teacher.getUserName());
+        configurationService.add(teacher, configuration);
+        List<Configuration> configurations = configurationService.getByUserName(teacher.getUserName());
         System.out.println(configurations);
     }
 

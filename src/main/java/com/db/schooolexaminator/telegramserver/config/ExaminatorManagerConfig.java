@@ -1,16 +1,11 @@
 package com.db.schooolexaminator.telegramserver.config;
 
-import com.db.schooolexaminator.dao.ConfigurationDAO;
-import com.db.schooolexaminator.dao.UserDao;
-import com.db.schooolexaminator.dao.UserDaoImpl;
-import com.db.schooolexaminator.services.TeacherService;
+import com.db.schooolexaminator.services.TeacherServiceImpl;
 import com.db.schooolexaminator.telegramserver.Examinator;
 import com.db.schooolexaminator.telegramserver.ExaminatorConfiguration;
 import com.db.schooolexaminator.telegramserver.ExaminatorImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import org.springframework.orm.jpa.EntityManagerFactoryAccessor;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.function.Function;
 
@@ -18,7 +13,7 @@ import java.util.function.Function;
 
 @org.springframework.context.annotation.Configuration
 public class ExaminatorManagerConfig {
-
+    // TODO: 03/08/2017 MOVE ALL TO XML
     @Bean
     public Function<ExaminatorConfiguration, Examinator> examinatorSupplier(){
         return c -> {
@@ -34,8 +29,8 @@ public class ExaminatorManagerConfig {
     }*/
 
     @Bean
-    public TeacherService teacherService() {
-        return new TeacherService();
+    public TeacherServiceImpl teacherService() {
+        return new TeacherServiceImpl();
     }
     @Bean
     @Scope("prototype")

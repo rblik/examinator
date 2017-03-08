@@ -422,9 +422,9 @@
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				type: "GET",
+				type: "POST",
 				url:  "http://localhost:8080/add",
-				data: {"data":JSON.stringify(allSettings)},
+				data: JSON.stringify(allSettings),
 				//Output php feedback
 				success: function(html)
 				{
