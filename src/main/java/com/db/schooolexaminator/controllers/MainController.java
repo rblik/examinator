@@ -5,18 +5,18 @@ import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.ConfigurationService;
 import com.db.schooolexaminator.services.TeacherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Iterables;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
@@ -39,19 +39,11 @@ public class MainController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @SneakyThrows
     public String addConfiguration(@RequestBody Configuration configuration, ModelMap model) {
-//        String configurationJson = request.getParameter("data");
-//        ObjectMapper mapper = new ObjectMapper();
-//        Configuration configuration = mapper.readValue(configurationJson, Configuration.class);
+//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Teacher teacher = new Teacher("username", "password", new ArrayList<>());
-        teacher.getConfigurations().add(configuration);
+        Configuration configuration1 = configurationService.addByName("username", configuration);
 
-        teacherService.update(teacher);
-
-        List<Configuration> sameConfigurations = configurationService.getByUserName("username");
-        Configuration latestConfiguration = sameConfigurations.get(sameConfigurations.size() - 1);
-
-        model.addAttribute("configurationId",latestConfiguration.getConfigurationId());
+        model.addAttribute("configurationId", configuration1.getConfigurationId());
 
         return "userconfigurations";
     }

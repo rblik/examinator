@@ -4,9 +4,12 @@ import com.db.schooolexaminator.dao.ConfigurationDao;
 import com.db.schooolexaminator.dao.TeacherDao;
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.Teacher;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,15 +31,13 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     }
 
     @Override
-    public Configuration getLastByUserName(String userName) {
-// TODO: 03/08/2017 IMPLEMENT
-        return null;
-    }
-
-    @Override
-    public void add(Teacher teacher, Configuration configuration) {
+    @Transactional
+    public Configuration addByName(String teacherName, Configuration configuration) {
+        Teacher persistedTeacher = teacherDao.findByName(teacherName);
+        Teacher teacher = persistedTeacher != null ? persistedTeacher :
+                new Teacher("username", "password", new ArrayList<>());
         teacher.getConfigurations().add(configuration);
-        teacherDao.update(teacher);
+        return Iterables.getLast(teacherDao.update(teacher).getConfigurations());
     }
 
     @Override

@@ -39,11 +39,9 @@ public class PictureAssistantImpl implements PictureAssistant {
         fileNameToSave = "pic" + pupilId + ".jpg";
         this.pictureManager = pictureManager;
 
-        File imageFile = new File(pictureManager.getPathToDir() + "\\" + fileName);
         System.out.println(pictureManager.getPathToDir() + "\\" + fileName);
-        originalImage = ImageIO.read(imageFile);
-        File blackFile = new File(pictureManager.getPathToDir()+ "\\" + "black.jpg");
-        currentImage = ImageIO.read(blackFile);
+        originalImage = ImageIO.read(getClass().getResource("/pictures/" + fileName));
+        currentImage = ImageIO.read(getClass().getResource("/pictures/black.jpg"));
     }
 
 

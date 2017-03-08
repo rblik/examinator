@@ -4,6 +4,8 @@ import com.db.schooolexaminator.model.Teacher;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -16,17 +18,20 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public Teacher findByName(String userName) {
 
-        return entityManager
+        List<Teacher> resultList = entityManager
                 .createQuery("select t from Teacher as t where t.userName=:userName", Teacher.class)
-                .setParameter("userName", userName).getResultList().get(0);
+                .setParameter("userName", userName).getResultList();
+        return resultList.isEmpty()? null : resultList.get(0);
     }
 
     @Override
-    public void update(Teacher teacher) {
-        entityManager.merge(teacher);
+    @Transactional
+    public Teacher update(Teacher teacher) {
+        return entityManager.merge(teacher);
     }
 
     @Override
+    @Transactional
     public void add(Teacher teacher) {
         entityManager.persist(teacher);
     }

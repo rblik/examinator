@@ -11,7 +11,7 @@
         <logout/>
     </http>
     <beans:bean id="expressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
-    <authentication-manager>
+    <authentication-manager erase-credentials="false">
         <authentication-provider>
             <user-service>
                 <user name="Evgeny" password="1234" authorities="ROLE_USER, ROLE_ADMIN"/>

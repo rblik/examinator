@@ -11,9 +11,7 @@ import java.util.List;
 public interface ConfigurationService {
     List<Configuration> getByUserName(String userName);
 
-    Configuration getLastByUserName(String userName);
-
-    void add(Teacher teacher, Configuration configuration);
+    Configuration addByName(String teacherName, Configuration configuration);
 
     Configuration get(int id);
 }

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 @Service
-@Transactional
 public class TeacherServiceImpl implements TeacherService{
     @Autowired
     private TeacherDao dao;
@@ -21,7 +20,12 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public void update(Teacher teacher) {
-        dao.update(teacher);
+    public Teacher update(Teacher teacher) {
+        return dao.update(teacher);
+    }
+
+    @Override
+    public Teacher findByName(String userName) {
+        return dao.findByName(userName);
     }
 }

@@ -34,7 +34,7 @@ public class HibernateTeacherDaoTest {
         teacherService.add(teacher);
         OperationConstraint operationConstraint = new OperationConstraint();
         Configuration configuration = new Configuration("Title", Arrays.asList(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
-        configurationService.add(teacher, configuration);
+        configurationService.addByName("username", configuration);
         List<Configuration> configurations = configurationService.getByUserName(teacher.getUserName());
         System.out.println(configurations);
     }
