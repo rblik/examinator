@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class MailAssistantImpl implements MailAssistant {
 
-    MailSender mailSender;
-    List<String> emails;
+    private MailSender mailSender;
+    private List<String> emails;
 
     public MailAssistantImpl(List<String> emails, MailSender mailSender) {
         this.emails = emails;

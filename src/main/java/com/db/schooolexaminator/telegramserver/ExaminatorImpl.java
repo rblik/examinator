@@ -37,7 +37,7 @@ public class ExaminatorImpl implements Examinator {
     private Exercise currentExercise;
     private boolean isFirstGeneration;
 
-    Statistics statistics;
+    private Statistics statistics;
 
     @Autowired
     private MailSender mailSender;
@@ -49,8 +49,8 @@ public class ExaminatorImpl implements Examinator {
     private PictureAssistant pictureAssistant;
 
 
-    Integer pupilId;
-    Random r = new Random();
+    private Integer pupilId;
+    private Random r = new Random();
 
     public ExaminatorImpl() {}
 

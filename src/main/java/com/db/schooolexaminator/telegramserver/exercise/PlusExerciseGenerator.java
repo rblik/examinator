@@ -9,16 +9,9 @@ import java.util.Random;
  */
 public class PlusExerciseGenerator implements ExerciseGenerator {
 
-    OperationConstraint operationConstraint;
-
-    NumberConstraint constraintA;
-    NumberConstraint constraintB;
-    NumberConstraint constraintAns;
-
-
-
-    Random r = new Random();
-
+    private NumberConstraint constraintA;
+    private NumberConstraint constraintB;
+    private NumberConstraint constraintAns;
 
 
     public PlusExerciseGenerator(OperationConstraint operationConstraint) {

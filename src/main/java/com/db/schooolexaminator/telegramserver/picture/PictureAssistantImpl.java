@@ -15,10 +15,10 @@ import java.util.Random;
  * Created by JavaSchoolStudent on 02.09.2016.
  */
 public class PictureAssistantImpl implements PictureAssistant {
-    BufferedImage originalImage;
-    BufferedImage currentImage;
+    private BufferedImage originalImage;
+    private BufferedImage currentImage;
 
-    PictureManager pictureManager;
+    private PictureManager pictureManager;
 
 
     private int rows;
@@ -26,8 +26,8 @@ public class PictureAssistantImpl implements PictureAssistant {
 
     private String fileNameToSave;
 
-    List<Integer> blackPieces = new ArrayList<Integer>();
-    Random r = new Random();
+    private List<Integer> blackPieces = new ArrayList<Integer>();
+    private Random r = new Random();
 
     @SneakyThrows
     public PictureAssistantImpl(PictureManager pictureManager, String fileName, Integer pupilId, int rows, int columns) {

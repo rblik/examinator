@@ -22,7 +22,7 @@ public class StatisticsImpl implements Statistics {
     @Getter
     private long spentMinutes = 0;
 
-    LocalDateTime startTime;
+    private LocalDateTime startTime;
 
     public StatisticsImpl(int countExercises) {
         this.countExercises = countExercises;

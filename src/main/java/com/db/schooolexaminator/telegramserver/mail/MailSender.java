@@ -26,7 +26,7 @@ public class MailSender {
     private String emailServerPort;
 
 
-    Properties props;
+    private Properties props;
 
 
     @PostConstruct

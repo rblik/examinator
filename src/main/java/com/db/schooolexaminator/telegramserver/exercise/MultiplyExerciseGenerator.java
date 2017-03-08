@@ -8,15 +8,10 @@ import java.util.Random;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 public class MultiplyExerciseGenerator implements ExerciseGenerator {
-    OperationConstraint operationConstraint;
 
-    NumberConstraint constraintA;
-    NumberConstraint constraintB;
-    NumberConstraint constraintAns;
-
-
-
-    Random r = new Random();
+    private NumberConstraint constraintA;
+    private NumberConstraint constraintB;
+    private NumberConstraint constraintAns;
 
 
 

@@ -35,7 +35,7 @@ public class NumberConstraint {
         } else {
             this.minValue = minValue;
         }
-        if ((maxValue == null) || ((minValue == 0) && (maxValue == 0))) {
+        if ((maxValue == null) || ((minValue == 0) && (maxValue == 0)) || (maxValue < 0)) {
             this.maxValue = Integer.MAX_VALUE;
         } else {
             this.maxValue = maxValue;

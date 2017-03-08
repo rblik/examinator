@@ -8,17 +8,11 @@ import java.util.Random;
  * Created by JavaSchoolStudent on 01.09.2016.
  */
 public class DivisionExerciseGenerator implements ExerciseGenerator {
-    OperationConstraint operationConstraint;
 
-    NumberConstraint constraintA;
-    NumberConstraint constraintB;
-    NumberConstraint constraintAns;
-    boolean isDivisionWithoutRemainder;
-
-
-
-    Random r = new Random();
-
+    private NumberConstraint constraintA;
+    private NumberConstraint constraintB;
+    private NumberConstraint constraintAns;
+    private boolean isDivisionWithoutRemainder;
 
 
     public DivisionExerciseGenerator(OperationConstraint operationConstraint) {

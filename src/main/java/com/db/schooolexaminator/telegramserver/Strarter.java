@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 public class Strarter {
 
     @Autowired
-    ExaminatorMessageHandler examinatorMessageHandler;
+    private ExaminatorMessageHandler examinatorMessageHandler;
 
     @PostConstruct
     public void init() {
