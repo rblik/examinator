@@ -1,6 +1,7 @@
 package com.db.schooolexaminator.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 @Data
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"id", "address"})
 public class Email {
     @Id @GeneratedValue(strategy= GenerationType.TABLE)
     private int id;

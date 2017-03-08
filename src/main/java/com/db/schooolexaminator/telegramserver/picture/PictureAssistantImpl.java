@@ -18,7 +18,7 @@ public class PictureAssistantImpl implements PictureAssistant {
     private BufferedImage originalImage;
     private BufferedImage currentImage;
 
-    private PictureManager pictureManager;
+    PictureManager pictureManager;
 
 
     private int rows;

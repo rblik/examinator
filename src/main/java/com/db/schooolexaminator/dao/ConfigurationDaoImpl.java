@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -28,6 +29,10 @@ public class ConfigurationDaoImpl implements ConfigurationDao {
 
     @Override
     public Configuration get(int id) {
-        return entityManager.find(Configuration.class, id);
+        List<Configuration> resultList = entityManager.createQuery("SELECT DISTINCT c FROM Configuration c LEFT JOIN FETCH c.operationConstraints WHERE c.configurationId=:id", Configuration.class)
+                .setParameter("id", id)
+                .getResultList();
+//        return entityManager.find(Configuration.class, id);
+        return resultList.isEmpty() ? null : resultList.get(0);
     }
 }

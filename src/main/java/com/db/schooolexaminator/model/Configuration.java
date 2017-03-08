@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
@@ -23,7 +24,7 @@ public class Configuration {
     private String title;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Email> emails;
+    private Set<Email> emails;
 
     @Getter
     @JsonUnwrapped
@@ -35,7 +36,7 @@ public class Configuration {
     @Getter
     private int frameRows;
 
-    public Configuration(String title, List<Email> emails, List<OperationConstraint> operationConstraints, int frameCols, int frameRows) {
+    public Configuration(String title, Set<Email> emails, List<OperationConstraint> operationConstraints, int frameCols, int frameRows) {
         this.title = title;
         this.emails = emails;
         this.operationConstraints = operationConstraints;

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
@@ -25,19 +26,19 @@ public class OperationConstraint {
     private int maxAnswer;
 //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Integer> exceptA;
+    private Set<Integer> exceptA;
 
 //    @Transient
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Integer> exceptB;
+    private Set<Integer> exceptB;
 //    @Transient
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Integer> specialA;
+    private Set<Integer> specialA;
 
 //    @Transient
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Integer> specialB;
+    private Set<Integer> specialB;
     private boolean allowedNegativeAnswer;
     private boolean divisionWithoutRemainder;
 
@@ -62,7 +63,7 @@ public class OperationConstraint {
         return getListInteger(specialB);
     }
 
-    private static List<Integer> getListInteger(List<Integer> list) {
+    private static List<Integer> getListInteger(Set<Integer> list) {
         if (list == null) {
             return null;
         }
