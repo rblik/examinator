@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+	<link rel="shortcut icon" href="resources/images/favicon.ico">
 	<style>
 		body {
 			padding-top: 0px; /* 60px to make the container go all the way to the bottom of the topbar */

@@ -5,18 +5,12 @@ import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.ConfigurationService;
 import com.db.schooolexaminator.services.TeacherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Iterables;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
@@ -41,7 +35,7 @@ public class MainController {
     public String addConfiguration(@RequestBody Configuration configuration, ModelMap model) {
 //        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Configuration configuration1 = configurationService.addByName("username", configuration);
+        Configuration configuration1 = configurationService.addByName(configuration);
 
         model.addAttribute("configurationId", configuration1.getConfigurationId());
 
@@ -59,5 +53,27 @@ public class MainController {
         model.addAttribute("id", id);
 
         return "showconfiguration";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(ModelMap model,
+                        @RequestParam(value = "error", required = false) boolean error,
+                        @RequestParam(value = "message", required = false) String message) {
+        model.addAttribute("error", error);
+        model.addAttribute("message", message);
+        model.addAttribute("login", true);
+        return "auth";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registration(ModelMap model) {
+        model.addAttribute("teacher", new Teacher("", ""));
+        return "auth";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String registration(@ModelAttribute("teacher") Teacher teacher) {
+        teacherService.add(teacher);
+        return "redirect:/";
     }
 }

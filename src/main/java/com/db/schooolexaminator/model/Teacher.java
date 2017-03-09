@@ -1,7 +1,9 @@
 package com.db.schooolexaminator.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,12 +13,13 @@ import java.util.List;
  */
 @Entity
 @NoArgsConstructor
-@Getter
+@Data
+@ToString(exclude = {"configurations"})
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-
+    @Column(unique = true)
     String userName;
     String password;
 
@@ -27,5 +30,10 @@ public class Teacher {
         this.userName = username;
         this.password = password;
         this.configurations = configurations;
+    }
+
+    public Teacher(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 }
