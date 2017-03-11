@@ -7,9 +7,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static com.db.schooolexaminator.telegramserver.picture.PictureManager.pic_black;
+import static com.db.schooolexaminator.telegramserver.picture.PictureManager.pic_default;
 
 /**
  * Created by JavaSchoolStudent on 02.09.2016.
@@ -29,7 +33,6 @@ public class PictureAssistantImpl implements PictureAssistant {
     private List<Integer> blackPieces = new ArrayList<Integer>();
     private Random r = new Random();
 
-    @SneakyThrows
     public PictureAssistantImpl(PictureManager pictureManager, String fileName, Integer pupilId, int rows, int columns) {
         this.columns = columns;
         this.rows = rows;
@@ -39,9 +42,26 @@ public class PictureAssistantImpl implements PictureAssistant {
         fileNameToSave = "pic" + pupilId + ".jpg";
         this.pictureManager = pictureManager;
 
-        System.out.println(pictureManager.getPathToDir() + "\\" + fileName);
-        originalImage = ImageIO.read(getClass().getResource("/pictures/" + fileName));
-        currentImage = ImageIO.read(getClass().getResource("/pictures/black.jpg"));
+        System.out.println(pictureManager.getPersistentDir() + "\\" + fileName);
+        File input = new File(pictureManager.getPersistentDir() + fileName);
+        if (input.exists()) {
+            try {
+                originalImage = ImageIO.read(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                originalImage = ImageIO.read(new File(pictureManager.defaultPictureFileName(pic_default)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            currentImage = ImageIO.read(new File(pictureManager.defaultPictureFileName(pic_black)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

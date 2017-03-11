@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.db.schooolexaminator.security.AuthorizedUser.current_user;
+
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
  */
@@ -26,7 +28,8 @@ import java.util.Random;
 
 public class ExaminatorImpl implements Examinator {
 
-    @Setter @Getter
+    @Setter
+    @Getter
     private String pupilName;
 
     @Getter
@@ -52,7 +55,8 @@ public class ExaminatorImpl implements Examinator {
     private Integer pupilId;
     private Random r = new Random();
 
-    public ExaminatorImpl() {}
+    public ExaminatorImpl() {
+    }
 
     private void init() {
         generators = new ArrayList<ExerciseGenerator>();
@@ -60,17 +64,21 @@ public class ExaminatorImpl implements Examinator {
             if (c.getSign().equals("+")) {
                 generators.add(new PlusExerciseGenerator(c));
             }
-            if (c.getSign().equals("-")) {
+            else if (c.getSign().equals("-")) {
                 generators.add(new MinusExerciseGenerator(c));
             }
-            if (c.getSign().equals("*")) {
+            else if (c.getSign().equals("*")) {
                 generators.add(new MultiplyExerciseGenerator(c));
             }
-            if (c.getSign().equals("/")) {
+            else if (c.getSign().equals("/")) {
                 generators.add(new DivisionExerciseGenerator(c));
             }
         }
-        pictureAssistant = new PictureAssistantImpl(pictureManager, pictureManager.defaultPictureFileName(), pupilId, configuration.getFrameRows(), configuration.getFrameCols());
+        if (generators.size() == 0) {
+            generators.add(new PlusExerciseGenerator(new OperationConstraint("+", 0, 10, 0, 10)));
+        }
+        String fileName = configuration.getTitle() + "_" + configuration.getEmails().get(0).getAddress();
+        pictureAssistant = new PictureAssistantImpl(pictureManager, pictureManager.getPictureFileName(configuration.getPicName()), pupilId, configuration.getFrameRows(), configuration.getFrameCols());
         statistics = new StatisticsImpl(configuration.getFrameCols() * configuration.getFrameRows());
         mailAssistant = new MailAssistantImpl(configuration.getListEmailsString(), mailSender);
         isFirstGeneration = true;

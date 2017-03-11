@@ -2,6 +2,7 @@ package com.db.schooolexaminator.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "constraintId")
 public class OperationConstraint {
     private String sign;
     private int minA;
@@ -24,7 +26,16 @@ public class OperationConstraint {
     private int maxB;
     private int minAnswer;
     private int maxAnswer;
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    public OperationConstraint(String sign, int minA, int maxA, int minB, int maxB) {
+        this.sign = sign;
+        this.minA = minA;
+        this.maxA = maxA;
+        this.minB = minB;
+        this.maxB = maxB;
+    }
+
+    //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Integer> exceptA;
 
@@ -67,10 +78,6 @@ public class OperationConstraint {
         if (list == null) {
             return null;
         }
-        List<Integer> ans = new ArrayList<Integer>();
-        for (Integer specificNumber : list) {
-            ans.add(specificNumber);
-        }
-        return ans;
+        return new ArrayList<>(list);
     }
 }

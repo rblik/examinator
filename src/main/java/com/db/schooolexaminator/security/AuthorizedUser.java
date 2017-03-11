@@ -6,6 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Arrays;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Created by Blik on 03/09/2017.
@@ -26,7 +29,9 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return (principal instanceof AuthorizedUser) ? (AuthorizedUser) principal : null;
     }
 
-    public static String getLoggedName() {
-        return safeGet().getUsername();
+    public static String current_user() {
+        AuthorizedUser user = safeGet();
+        requireNonNull(user);
+        return user.getUsername();
     }
 }

@@ -6,6 +6,7 @@ import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.Teacher;
 import com.db.schooolexaminator.services.ConfigurationService;
 import com.db.schooolexaminator.services.TeacherService;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ public class HibernateTeacherDaoTest {
         Teacher teacher = new Teacher("username", "password", new ArrayList<Configuration>());
         teacherService.add(teacher);
         OperationConstraint operationConstraint = new OperationConstraint();
-        Configuration configuration = new Configuration("Title", ImmutableSet.of(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
+        Configuration configuration = new Configuration("Title", ImmutableList.of(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
         configurationService.addByName(configuration);
         List<Configuration> configurations = configurationService.getByUserName(teacher.getUserName());
         System.out.println(configurations);

@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Data
 @Entity
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "address"})
+@EqualsAndHashCode(of = {"address"})
 public class Email {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
