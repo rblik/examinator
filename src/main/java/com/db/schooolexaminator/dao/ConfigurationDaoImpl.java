@@ -1,10 +1,13 @@
 package com.db.schooolexaminator.dao;
 
 import com.db.schooolexaminator.model.Configuration;
+import com.db.schooolexaminator.model.Teacher;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,5 +25,21 @@ public class ConfigurationDaoImpl implements ConfigurationDao {
                 .getResultList();
 //        return entityManager.find(Configuration.class, id);
         return resultList.isEmpty() ? null : resultList.get(0);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int id) {
+        // TODO: 03/12/2017
+        Configuration ref = entityManager.getReference(Configuration.class, id);
+        entityManager.remove(ref);
+    }
+
+    @Override
+    public List<Configuration> findByName(String name) {
+        // TODO: 03/12/2017
+//        List<List<Configuration> list = Arrays.asList(entityManager.createQuery("SELECT t.configurations FROM Teacher t where t.userName=:userName", List.class)
+//                .setParameter("userName", name).getResultList());
+        return null;
     }
 }

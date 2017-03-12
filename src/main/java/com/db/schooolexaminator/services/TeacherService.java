@@ -8,7 +8,5 @@ import com.db.schooolexaminator.model.Teacher;
 public interface TeacherService {
     void add(Teacher teacher);
 
-    Teacher update(Teacher teacher);
-
     Teacher findByName(String userName);
 }

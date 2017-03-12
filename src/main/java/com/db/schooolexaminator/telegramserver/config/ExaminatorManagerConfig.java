@@ -1,6 +1,5 @@
 package com.db.schooolexaminator.telegramserver.config;
 
-import com.db.schooolexaminator.services.TeacherServiceImpl;
 import com.db.schooolexaminator.telegramserver.Examinator;
 import com.db.schooolexaminator.telegramserver.ExaminatorConfiguration;
 import com.db.schooolexaminator.telegramserver.ExaminatorImpl;
@@ -23,15 +22,7 @@ public class ExaminatorManagerConfig {
             return e;
         };
     }
-/*    @Bean
-    public ConfigurationDAO configurationDAO() {
-        return new ConfigurationDAO();
-    }*/
 
-    @Bean
-    public TeacherServiceImpl teacherService() {
-        return new TeacherServiceImpl();
-    }
     @Bean
     @Scope("prototype")
     public Examinator examinator() {

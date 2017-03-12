@@ -14,6 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import static com.db.schooolexaminator.security.AuthorizedUser.current_user;
+
 /**
  * Created by JavaSchoolStudent on 31.08.2016.
  */
@@ -42,7 +44,7 @@ public class MainController {
         Configuration configuration = new ObjectMapper().readValue(configurationJson, Configuration.class);
         pictureManager.savePicture(configuration, file);
 
-        model.addAttribute("configurationId", configurationService.addByName(configuration).getConfigurationId());
+        model.addAttribute("configurationId", configurationService.addByName(current_user(), configuration).getConfigurationId());
 
         return "userconfigurations";
     }

@@ -74,10 +74,10 @@ public class OperationConstraint {
         return getListInteger(specialB);
     }
 
-    private static List<Integer> getListInteger(Set<Integer> list) {
-        if (list == null) {
+    private static List<Integer> getListInteger(Set<Integer> set) {
+        if (set == null) {
             return null;
         }
-        return new ArrayList<>(list);
+        return new ArrayList<>(set);
     }
 }

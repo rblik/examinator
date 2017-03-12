@@ -11,7 +11,9 @@ import java.util.List;
 public interface ConfigurationService {
     List<Configuration> getByUserName(String userName);
 
-    Configuration addByName(Configuration configuration);
+    Configuration addByName(String teacherName, Configuration configuration);
 
     Configuration get(int id);
+
+    void delete(int id);
 }

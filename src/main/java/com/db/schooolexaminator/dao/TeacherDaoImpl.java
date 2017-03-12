@@ -4,7 +4,7 @@ import com.db.schooolexaminator.model.Teacher;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**

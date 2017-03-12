@@ -28,11 +28,6 @@ public class TeacherServiceImpl implements TeacherService, UserDetailsService {
     }
 
     @Override
-    public Teacher update(Teacher teacher) {
-        return dao.update(teacher);
-    }
-
-    @Override
     public Teacher findByName(String userName) {
         return dao.findByName(userName);
     }

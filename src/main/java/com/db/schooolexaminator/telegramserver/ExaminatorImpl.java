@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.db.schooolexaminator.security.AuthorizedUser.current_user;
-
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
  */
@@ -77,7 +75,6 @@ public class ExaminatorImpl implements Examinator {
         if (generators.size() == 0) {
             generators.add(new PlusExerciseGenerator(new OperationConstraint("+", 0, 10, 0, 10)));
         }
-        String fileName = configuration.getTitle() + "_" + configuration.getEmails().get(0).getAddress();
         pictureAssistant = new PictureAssistantImpl(pictureManager, pictureManager.getPictureFileName(configuration.getPicName()), pupilId, configuration.getFrameRows(), configuration.getFrameCols());
         statistics = new StatisticsImpl(configuration.getFrameCols() * configuration.getFrameRows());
         mailAssistant = new MailAssistantImpl(configuration.getListEmailsString(), mailSender);
