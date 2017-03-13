@@ -2,6 +2,7 @@ package com.db.schooolexaminator.services;
 
 import com.db.schooolexaminator.dao.ConfigurationDao;
 import com.db.schooolexaminator.dao.TeacherDao;
+import com.db.schooolexaminator.dto.ConfDto;
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.Teacher;
 import com.google.common.collect.Iterables;
@@ -25,7 +26,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     private ConfigurationDao configurationDao;
 
     @Override
-    public List<Configuration> getByUserName(String userName) {
+    public List<ConfDto> getByUserName(String userName) {
         return configurationDao.findByName(userName);
     }
 
@@ -34,8 +35,8 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     public Configuration addByName(String teacherName, Configuration configuration) {
         Teacher persistedTeacher = teacherDao.findByName(teacherName);
 
-        persistedTeacher.getConfigurations().add(configuration);
-        return Iterables.getLast(teacherDao.update(persistedTeacher).getConfigurations());
+        configuration.setTeacher(persistedTeacher);
+        return configurationDao.save(configuration);
     }
 
     @Override

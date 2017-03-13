@@ -1,6 +1,7 @@
 package com.db.schooolexaminator.services;
 
 import com.db.schooolexaminator.dao.ConfigurationDao;
+import com.db.schooolexaminator.dto.ConfDto;
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.Email;
 import com.db.schooolexaminator.model.OperationConstraint;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static java.util.Collections.*;
 import static org.junit.Assert.*;
@@ -43,6 +45,7 @@ public class ConfigurationServiceTest {
         /*System.out.println(configurationService.getByUserName("username"));
         configurationService.delete(name.getConfigurationId());
         System.out.println(configurationService.getByUserName("username"));*/
-        configurationDao.findByName("username");
+        List<ConfDto> username = configurationDao.findByName("username");
+//        configurationDao.delete(1);
     }
 }

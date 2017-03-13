@@ -4,6 +4,7 @@
         <link rel="shortcut icon" href="resources/images/favicon.ico">
     </head>
     <body>
+        <a href="${pageContext.request.contextPath}/">See all configurations</a>
         Configuration <b>${id}</b>:
         <hr>
         <div id="pictureHolder">

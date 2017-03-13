@@ -21,11 +21,17 @@ import static java.util.stream.Collectors.*;
 @lombok.Getter
 @Data
 @NoArgsConstructor
+@Access(AccessType.FIELD)
 public class Configuration {
 
     @Getter
     @Setter
     boolean hasImage;
+
+    @JsonIgnore
+    @Getter @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Teacher teacher;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

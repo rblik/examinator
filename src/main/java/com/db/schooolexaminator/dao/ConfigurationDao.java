@@ -1,5 +1,6 @@
 package com.db.schooolexaminator.dao;
 
+import com.db.schooolexaminator.dto.ConfDto;
 import com.db.schooolexaminator.model.Configuration;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface ConfigurationDao {
 
     void delete(int id);
 
-    List<Configuration> findByName(String name);
+    List<ConfDto> findByName(String name);
+
+    Configuration save(Configuration configuration);
 }

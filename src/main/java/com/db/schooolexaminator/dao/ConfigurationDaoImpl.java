@@ -1,14 +1,15 @@
 package com.db.schooolexaminator.dao;
 
+import com.db.schooolexaminator.dto.ConfDto;
 import com.db.schooolexaminator.model.Configuration;
-import com.db.schooolexaminator.model.Teacher;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import java.util.Arrays;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -30,16 +31,19 @@ public class ConfigurationDaoImpl implements ConfigurationDao {
     @Override
     @Transactional
     public void delete(int id) {
-        // TODO: 03/12/2017
         Configuration ref = entityManager.getReference(Configuration.class, id);
         entityManager.remove(ref);
     }
 
     @Override
-    public List<Configuration> findByName(String name) {
-        // TODO: 03/12/2017
-//        List<List<Configuration> list = Arrays.asList(entityManager.createQuery("SELECT t.configurations FROM Teacher t where t.userName=:userName", List.class)
-//                .setParameter("userName", name).getResultList());
-        return null;
+    public List<ConfDto> findByName(String name) {
+        return entityManager.createQuery("SELECT c.configurationId, c.title FROM Configuration c where c.teacher.userName=:userName", Object[].class)
+                .setParameter("userName", name).getResultList().stream().map(ConfDto::new).collect(toList());
+    }
+
+    @Override
+    public Configuration save(Configuration configuration) {
+        entityManager.persist(configuration);
+        return configuration;
     }
 }

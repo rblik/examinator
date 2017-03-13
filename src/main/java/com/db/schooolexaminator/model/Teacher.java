@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString(exclude = {"configurations"})
+@Access(AccessType.FIELD)
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class Teacher {
     String userName;
     String password;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<Configuration> configurations;
 
     public Teacher(String username, String password, List<Configuration> configurations) {

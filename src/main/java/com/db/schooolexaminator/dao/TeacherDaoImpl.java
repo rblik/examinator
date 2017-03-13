@@ -26,12 +26,6 @@ public class TeacherDaoImpl implements TeacherDao {
 
     @Override
     @Transactional
-    public Teacher update(Teacher teacher) {
-        return entityManager.merge(teacher);
-    }
-
-    @Override
-    @Transactional
     public void add(Teacher teacher) {
         entityManager.persist(teacher);
     }

@@ -12,6 +12,5 @@ import java.util.List;
 public interface TeacherDao {
     Teacher findByName(String userName);
 
-    Teacher update(Teacher teacher);
     void add(Teacher teacher);
 }

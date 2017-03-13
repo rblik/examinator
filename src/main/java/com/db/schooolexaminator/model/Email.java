@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
@@ -16,6 +13,7 @@ import javax.persistence.Id;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"address"})
+@Access(AccessType.FIELD)
 public class Email {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;

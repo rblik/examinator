@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class MainController {
     @Autowired
     private PictureManager pictureManager;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getUserConfigurations(ModelMap model) {
         return "createconfiguration";
     }
@@ -61,6 +62,19 @@ public class MainController {
         model.addAttribute("picName", resultConfiguration.getPicName());
 
         return "showconfiguration";
+    }
+
+    @DeleteMapping(value = "/config/{id}")
+    public ResponseEntity deleteConfiguration(@PathVariable("id") int id) {
+        configurationService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/")
+    public String getAllConfigurations(ModelMap model) {
+        model.addAttribute("list", configurationService.getByUserName(current_user()));
+        model.addAttribute("currentUser", current_user());
+        return "listconfigurations";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

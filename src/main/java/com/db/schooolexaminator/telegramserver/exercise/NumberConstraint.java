@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by JavaSchoolStudent on 01.09.2016.
  */
@@ -19,8 +21,8 @@ public class NumberConstraint {
 
     public NumberConstraint(Integer minValue, Integer maxValue) {
         initMinMaxValue(minValue, maxValue);
-        except = new ArrayList<Integer>();
-        special = new ArrayList<Integer>();
+        except = new ArrayList<>();
+        special = new ArrayList<>();
     }
 
     public NumberConstraint(Integer minValue, Integer maxValue, List<Integer> except, List<Integer> special) {
@@ -30,7 +32,7 @@ public class NumberConstraint {
     }
 
     public void initMinMaxValue(Integer minValue, Integer maxValue) {
-        if ((minValue == null) || ((minValue == 0) && (maxValue == 0)))  {
+        if ((minValue == null) || ((minValue == 0) && (maxValue == 0))) {
             this.minValue = Integer.MIN_VALUE;
         } else {
             this.minValue = minValue;
@@ -46,9 +48,11 @@ public class NumberConstraint {
     public Integer generateNumber() {
         Random r = new Random();
         int countOperation = 0;
-        if ((special== null) || (special.size() == 0)) { //range
+        if ((special == null) || (special.size() == 0)) { //range
             while (countOperation < 1000) {
-                Integer value = this.getMinValue() + r.nextInt(this.getMaxValue() - this.getMinValue());
+
+                int bound = this.getMaxValue() - this.getMinValue();
+                Integer value = this.getMinValue() + r.nextInt(abs(bound == 0 ? 1 : bound));
                 if ((except != null) && (except.contains(value))) {
                     countOperation++;
                     continue;

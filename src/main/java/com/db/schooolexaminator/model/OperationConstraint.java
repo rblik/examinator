@@ -18,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = "constraintId")
+@Access(AccessType.FIELD)
 public class OperationConstraint {
     private String sign;
     private int minA;

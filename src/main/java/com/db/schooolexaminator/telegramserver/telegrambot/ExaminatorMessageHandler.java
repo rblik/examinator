@@ -28,6 +28,7 @@ import java.util.List;
 @Component
 public class ExaminatorMessageHandler extends TelegramLongPollingBot implements MessageProcessor {
 
+    @Override
     public void onUpdateReceived(Update update) {
         final Message message = update.getMessage();
         new Thread(){
@@ -39,11 +40,13 @@ public class ExaminatorMessageHandler extends TelegramLongPollingBot implements 
         }.start();
     }
 
+    @Override
     public String getBotUsername() {
 //        return "telegrambot.Examinator";
         return "ExaminatorBot";
 
     }
+    @Override
     public String getBotToken() {
         //        return "220527772:AAGPz-VMhMiejjcd6YvEPHwVIpfZZsRHS9E";
         return "352487263:AAE_2O65x1UKgQ-jNWwmqrALkAU5n_SaVgI";

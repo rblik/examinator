@@ -447,7 +447,7 @@
             form.append("file", file);
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/add",
+                url: "${pageContext.request.contextPath}/add",
                 contentType: false,
                 processData: false,
                 data: form,
