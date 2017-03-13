@@ -67,7 +67,7 @@ public class PictureManager {
     }
 
     public String getPictureFileName(String configTitle) {
-        return "\\pictures\\" + configTitle + ".jpg";
+        return "/pictures/" + configTitle + ".jpg";
     }
 
     private static BufferedImage resizeImage(BufferedImage originalImage, int type) {
