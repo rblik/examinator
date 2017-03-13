@@ -39,12 +39,11 @@ public class PictureManager {
     protected static final String pic_black = "black";
     protected static final String pic_default = "picture";
 
-    @SneakyThrows
     public void savePicture(Configuration conf, MultipartFile multipartFile) {
 
         if (multipartFile != null) {
             conf.setHasImage(true);
-            String pathname = persistentDir + "\\pictures\\" + conf.getTitle() + "_" + conf.getEmails().get(0).getAddress() + ".jpg";
+            String pathname = persistentDir + "/pictures/" + conf.getTitle() + "_" + conf.getEmails().get(0).getAddress() + ".jpg";
             supplyAsync(() -> savePicture(pathname, multipartFile));
         }
     }
