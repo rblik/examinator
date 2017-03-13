@@ -11,6 +11,7 @@ import com.google.common.collect.ImmutableSet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:test-services-context.xml", "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
+@ActiveProfiles({"local"})
 public class HibernateTeacherDaoTest {
 
     @Autowired
@@ -35,7 +37,7 @@ public class HibernateTeacherDaoTest {
         Teacher teacher = new Teacher("username", "password", new ArrayList<Configuration>());
         teacherService.add(teacher);
         OperationConstraint operationConstraint = new OperationConstraint();
-        Configuration configuration = new Configuration("Title", ImmutableList.of(new Email("one@gmail.com")),Arrays.asList(operationConstraint), 3,4);
+        Configuration configuration = new Configuration("Title", ImmutableList.of(new Email("one@gmail.com")), Arrays.asList(operationConstraint), 3, 4);
         configurationService.addByName(teacher.getUserName(), configuration);
 //        List<Configuration> configurations = configurationService.getByUserName(teacher.getUserName());
 //        System.out.println(configurations);

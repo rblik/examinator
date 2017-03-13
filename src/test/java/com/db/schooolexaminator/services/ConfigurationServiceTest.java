@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,6 +27,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:test-services-context.xml", "file:src/main/webapp/WEB-INF/hibernate-context.xml"})
+@ActiveProfiles({"local"})
 public class ConfigurationServiceTest {
 
     @Autowired
@@ -34,12 +36,13 @@ public class ConfigurationServiceTest {
     private TeacherService teacherService;
     @Autowired
     private ConfigurationDao configurationDao;
+
     @Test
     public void delete() throws Exception {
         Teacher teacher = new Teacher("username", "password", new ArrayList<Configuration>());
         teacherService.add(teacher);
         OperationConstraint operationConstraint = new OperationConstraint();
-        Configuration configuration = new Configuration("Title", ImmutableList.of(new Email("one@gmail.com")), singletonList(operationConstraint), 3,4);
+        Configuration configuration = new Configuration("Title", ImmutableList.of(new Email("one@gmail.com")), singletonList(operationConstraint), 3, 4);
         Configuration name = configurationService.addByName(teacher.getUserName(), configuration);
         System.out.println(name.getConfigurationId());
         /*System.out.println(configurationService.getByUserName("username"));

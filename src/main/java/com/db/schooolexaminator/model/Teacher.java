@@ -16,6 +16,7 @@ import java.util.List;
 @Data
 @ToString(exclude = {"configurations"})
 @Access(AccessType.FIELD)
+@Table(name = "teacher")
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

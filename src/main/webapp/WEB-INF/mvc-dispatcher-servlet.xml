@@ -21,7 +21,7 @@
     </bean>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <mvc:resources mapping="/images/**" location="file:///#{systemEnvironment['OPENSHIFT_DATA_DIR']}/pictures/"/>
+    <mvc:resources mapping="/images/**" location="file:///#{systemEnvironment['EXAMINATOR_DATA_DIR']}/pictures/"/>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 </beans>

@@ -16,8 +16,8 @@
 <body>
 <h2>${login? 'Login' : 'Register'}</h2>
 <br>
-<div class="${login? 'login': 'register'}">
-    <a href="${pageContext.request.contextPath}/register"><h4>Register</h4></a>
+<div>
+    <a href="${pageContext.request.contextPath}/${login? 'register': 'login'}"><h4>${login? 'Register': 'Login'}</h4></a>
 </div>
 <hr>
 <c:if test="${error}">

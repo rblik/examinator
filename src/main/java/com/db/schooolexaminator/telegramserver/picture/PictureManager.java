@@ -26,12 +26,12 @@ import static java.util.concurrent.CompletableFuture.supplyAsync;
 @PropertySource("classpath:pictures.properties")
 public class PictureManager {
 
-    @Value("${OPENSHIFT_DATA_DIR}")
+    @Value("${EXAMINATOR_DATA_DIR}")
     @Getter
     @Setter
     private String persistentDir;
 
-    @Value("${OPENSHIFT_HOMEDIR}")
+    @Value("${EXAMINATOR_HOMEDIR}")
     @Getter
     @Setter
     private String homeDir;

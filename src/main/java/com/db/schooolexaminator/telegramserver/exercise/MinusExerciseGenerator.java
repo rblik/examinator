@@ -11,6 +11,7 @@ public class MinusExerciseGenerator implements ExerciseGenerator  {
 
     private NumberConstraint constraintA;
     private NumberConstraint constraintB;
+    private int constraintBMaxValue;
     private boolean isAllowedNegativeAnswer;
 
 
@@ -18,6 +19,7 @@ public class MinusExerciseGenerator implements ExerciseGenerator  {
         constraintA = new NumberConstraint(operationConstraint.getMinA(), operationConstraint.getMaxA(), operationConstraint.getExceptAListInteger(), operationConstraint.getSpecialAListInteger());
         constraintB = new NumberConstraint(operationConstraint.getMinB(), operationConstraint.getMaxB(), operationConstraint.getExceptBListInteger(), operationConstraint.getSpecialBListInteger());
         isAllowedNegativeAnswer = operationConstraint.isAllowedNegativeAnswer();
+        constraintBMaxValue = constraintB.getMaxValue();
     }
 
     @Override
@@ -30,7 +32,7 @@ public class MinusExerciseGenerator implements ExerciseGenerator  {
 
 
         if (!isAllowedNegativeAnswer) {
-            constraintB.setMaxValue(Math.min(constraintB.getMaxValue(), a));
+            constraintB.setMaxValue(Math.min(constraintBMaxValue, a));
         }
 
         int b = constraintB.generateNumber();

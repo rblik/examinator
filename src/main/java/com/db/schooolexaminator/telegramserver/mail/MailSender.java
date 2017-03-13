@@ -51,7 +51,7 @@ public class MailSender {
             MimeMessage msg = new MimeMessage(session);
             msg.setText(emailBody);
             msg.setSubject(emailSubject);
-            msg.setFrom(new InternetAddress(senderEmailID));
+            msg.setFrom(new InternetAddress(senderEmailID, "ExaminatorBot"));
             msg.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(receiverEmailID));
             Transport.send(msg);
