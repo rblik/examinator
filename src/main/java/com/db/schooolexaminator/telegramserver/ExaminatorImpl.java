@@ -2,6 +2,7 @@ package com.db.schooolexaminator.telegramserver;
 
 import com.db.schooolexaminator.model.Configuration;
 import com.db.schooolexaminator.model.OperationConstraint;
+import com.db.schooolexaminator.services.PictureService;
 import com.db.schooolexaminator.telegramserver.exercise.*;
 import com.db.schooolexaminator.telegramserver.mail.MailAssistant;
 import com.db.schooolexaminator.telegramserver.mail.MailAssistantImpl;
@@ -25,6 +26,8 @@ import java.util.Random;
 
 
 public class ExaminatorImpl implements Examinator {
+    @Autowired
+    private PictureService pictureService;
 
     @Setter
     @Getter
@@ -75,7 +78,7 @@ public class ExaminatorImpl implements Examinator {
         if (generators.size() == 0) {
             generators.add(new PlusExerciseGenerator(new OperationConstraint("+", 0, 10, 0, 10)));
         }
-        pictureAssistant = new PictureAssistantImpl(pictureManager, pictureManager.getPictureFileName(configuration.getPicName()), pupilId, configuration.getFrameRows(), configuration.getFrameCols());
+        pictureAssistant = new PictureAssistantImpl(pictureManager, configuration.isHasImage()? PictureService.toImage(pictureService.getByConf(configuration.getConfigurationId())):null/*pictureManager.getPictureFileName(configuration.getPicName())*/, pupilId, configuration.getFrameRows(), configuration.getFrameCols());
         statistics = new StatisticsImpl(configuration.getFrameCols() * configuration.getFrameRows());
         mailAssistant = new MailAssistantImpl(configuration.getListEmailsString(), mailSender);
         isFirstGeneration = true;

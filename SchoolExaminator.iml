@@ -26,7 +26,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="schoolexaminator-persistence-unit" value="3cc4d5d1-9c6d-49d5-9510-a6d50404eb7e" />
+          <factory-entry name="schoolexaminator-persistence-unit" value="678ad943-c8db-4ef6-a83d-17ea0e905a49" />
         </datasource-mapping>
       </configuration>
     </facet>

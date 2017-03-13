@@ -10,6 +10,7 @@
         <div id="pictureHolder">
 
         </div>
+
         <pre>${configuration}</pre>
 
 
@@ -21,8 +22,8 @@
 
             $("pre").text(jsonPretty);
 
-            <c:if test='${!"picture".equals(picName)}'>
-                $("#pictureHolder").prepend("<img src='/images/${picName}.jpg' alt='Picture' height='180' width='240'>")
+            <c:if test='${hasImage}'>
+            $("#pictureHolder").prepend('<img src="${pageContext.request.contextPath}/image/${id}" height="180" width="240"/>');
             </c:if>
         </script>
     </body>

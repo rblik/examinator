@@ -33,7 +33,7 @@ public class PictureAssistantImpl implements PictureAssistant {
     private List<Integer> blackPieces = new ArrayList<Integer>();
     private Random r = new Random();
 
-    public PictureAssistantImpl(PictureManager pictureManager, String fileName, Integer pupilId, int rows, int columns) {
+    public PictureAssistantImpl(PictureManager pictureManager, BufferedImage image, Integer pupilId, int rows, int columns) {
         this.columns = columns;
         this.rows = rows;
         for (int i = 0; i < columns * rows; i++) {
@@ -42,14 +42,8 @@ public class PictureAssistantImpl implements PictureAssistant {
         fileNameToSave = "pic" + pupilId + ".jpg";
         this.pictureManager = pictureManager;
 
-        System.out.println(pictureManager.getPersistentDir() + "\\" + fileName);
-        File input = new File(pictureManager.getPersistentDir() + fileName);
-        if (input.exists()) {
-            try {
-                originalImage = ImageIO.read(input);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (image!=null) {
+                originalImage = image;
         } else {
             try {
                 originalImage = ImageIO.read(new File(pictureManager.defaultPictureFileName(pic_default)));
