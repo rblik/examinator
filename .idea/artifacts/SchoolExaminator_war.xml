@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="SchoolExaminator:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="schoolexaminator.war">
-      <element id="artifact" artifact-name="SchoolExaminator:war exploded" />
-    </root>
-  </artifact>
-</component>
