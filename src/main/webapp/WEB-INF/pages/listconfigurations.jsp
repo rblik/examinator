@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Configurations</title>
+    <base href="${pageContext.request.contextPath}/"/>
     <link rel="shortcut icon" href="resources/images/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>

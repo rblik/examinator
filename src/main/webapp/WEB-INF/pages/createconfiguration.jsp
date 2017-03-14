@@ -1,5 +1,6 @@
 <html>
 <head>
+    <base href="${pageContext.request.contextPath}/"/>
     <link rel="shortcut icon" href="resources/images/favicon.ico">
     <style>
         body {

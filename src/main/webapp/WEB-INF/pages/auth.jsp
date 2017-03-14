@@ -6,6 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <base href="${pageContext.request.contextPath}/"/>
     <link rel="shortcut icon" href="resources/images/favicon.ico">
     <title>Registration</title>
 </head>

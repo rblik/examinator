@@ -4,6 +4,8 @@
 <html>
 <head>
     <title>Error</title>
+    <base href="${pageContext.request.contextPath}/"/>
+    <link rel="shortcut icon" href="resources/images/favicon.ico">
 </head>
 <body>
 <h2>${exception.message}</h2>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
+        <base href="${pageContext.request.contextPath}/"/>
         <link rel="shortcut icon" href="resources/images/favicon.ico">
     </head>
     <body>
