@@ -65,14 +65,16 @@ public class MainController {
     @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
     public void getPictureByConfId(@PathVariable("id") int id, HttpServletResponse response) {
         Picture picture = pictureService.getByConf(id);
-        response.setHeader("Cache-Control", "no-store");
-        response.setHeader("Pragma", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpeg");
-        ServletOutputStream stream = response.getOutputStream();
-        stream.write(picture.getContent());
-        stream.flush();
-        stream.close();
+        if (picture != null) {
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+            response.setContentType("image/jpeg");
+            ServletOutputStream stream = response.getOutputStream();
+            stream.write(picture.getContent());
+            stream.flush();
+            stream.close();
+        }
     }
 
     @RequestMapping(value = "/config/{id}", method = RequestMethod.GET)
@@ -108,7 +110,7 @@ public class MainController {
                         @RequestParam(value = "error", required = false) boolean error,
                         @RequestParam(value = "message", required = false) String message) {
         model.addAttribute("error", error);
-        model.addAttribute("message", message);
+        model.addAttribute("message", "registered".equals(message) ? "You successfully registered" : null);
         model.addAttribute("login", true);
         return "auth";
     }
@@ -122,6 +124,6 @@ public class MainController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registration(@ModelAttribute("teacher") Teacher teacher) {
         teacherService.add(teacher);
-        return "redirect:/";
+        return "redirect:login?message=registered";
     }
 }

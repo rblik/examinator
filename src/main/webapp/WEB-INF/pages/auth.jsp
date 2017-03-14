@@ -2,16 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <link rel="shortcut icon" href="resources/images/favicon.ico">
     <title>Registration</title>
-    <style>
-        .register {
-            display: none;
-        }
-    </style>
 </head>
 <body>
 <h2>${login? 'Login' : 'Register'}</h2>
@@ -22,11 +18,14 @@
 <hr>
 <c:if test="${error}">
     <div class="error">
+        <p style="color: red">
             ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+        </p>
     </div>
 </c:if>
 <c:if test="${not empty message}">
-    <div class="message">${message}
+    <div class="message">
+    <p style="color: ${fn:startsWith(message, 'User with')? 'red':'green'}">${message}</p>
     </div>
 </c:if>
 <br>

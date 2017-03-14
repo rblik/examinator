@@ -7,6 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
+<div style="float: right; padding-right: 25%">
+    <form action="j_spring_security_logout" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
 <h3>Configurations from ${currentUser}</h3>
 <hr>
 <a href="${pageContext.request.contextPath}/create">Create new configuration</a>

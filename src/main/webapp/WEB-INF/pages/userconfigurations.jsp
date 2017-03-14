@@ -3,6 +3,12 @@
         <link rel="shortcut icon" href="resources/images/favicon.ico">
     </head>
     <body>
+    <div style="float: right; padding-right: 25%">
+        <form action="j_spring_security_logout" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+
         <p>
             You have created new configuration, its id: <b>${configurationId}</b>. Pass it over to your students.
         <hr>

@@ -72,8 +72,13 @@
 </head>
 <body>
 <h2>Create new exam configuration</h2>
-<div id="err">
+<div style="color: red" id="err">
 
+</div>
+<div style="float: right; padding-right: 25%">
+    <form action="j_spring_security_logout" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
 </div>
 <table border=0">
     <tr>
@@ -360,6 +365,8 @@
 </p>
 </div>
 <hr>
+<label for="pic"> Upload image for test:</label>
+<br>
 <input id="pic" name="pic" type="file" accept=".jpg"/>
 <input type="button" value="Save" onclick="save()"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -419,7 +426,7 @@
             rows <= 0 || cols <= 0) {
             document.getElementById('err').innerText = 'Fields marked with * must be filled.';
         } else if (file && file.size > 51200) {
-            document.getElementById('err').innerText = 'File size have to be less than 50 Mb.'
+            document.getElementById('err').innerText = 'File size have to be less than 50 Kb.'
         } else {
             var form = new FormData();
             var allSettings = {};
