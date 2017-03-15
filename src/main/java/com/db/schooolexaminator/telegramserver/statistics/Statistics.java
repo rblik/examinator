@@ -14,7 +14,7 @@ public interface Statistics {
     int getCountCorrectAnswers();
     int getCountSkipAnswers();
     int getCountIncorrectAnswers();
-    long getSpentMinutes();
+    long getSpentSeconds();
 
 
 }

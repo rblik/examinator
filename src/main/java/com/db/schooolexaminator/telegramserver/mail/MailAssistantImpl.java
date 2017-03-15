@@ -24,7 +24,7 @@ public class MailAssistantImpl implements MailAssistant {
                 + "Number of correct answers: " + statistics.getCountCorrectAnswers() + ";\n"
                 + "Number of incorrect answers: " + statistics.getCountIncorrectAnswers() + ";\n"
                 + "Number of skip questions: " + statistics.getCountSkipAnswers() + ";\n"
-                + "Time spent: " + statistics.getSpentMinutes() + " minutes.";
+                + "Time spent: " + statistics.getSpentSeconds() + " minutes.";
         for (String email : emails) {
             mailSender.sendEmail(email, subject, body);
         }

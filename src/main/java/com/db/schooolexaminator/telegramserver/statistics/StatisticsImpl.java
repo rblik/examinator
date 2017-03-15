@@ -20,7 +20,7 @@ public class StatisticsImpl implements Statistics {
     @Getter
     private int countIncorrectAnswers = 0;
     @Getter
-    private long spentMinutes = 0;
+    private long spentSeconds = 0;
 
     private LocalDateTime startTime;
 
@@ -51,7 +51,7 @@ public class StatisticsImpl implements Statistics {
     @Override
     public void finishExam() {
         LocalDateTime finishTime = LocalDateTime.now();
-        spentMinutes = ChronoUnit.MINUTES.between(startTime, finishTime);
+        spentSeconds = ChronoUnit.SECONDS.between(startTime, finishTime);
     }
 
 }
